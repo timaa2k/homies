@@ -8,7 +8,7 @@ let
       custom.git
       custom.python
       custom.tmux
-      custom.vim
+      custom.neovim
 
       pkgs.curl
       pkgs.fzf

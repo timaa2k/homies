@@ -7,19 +7,21 @@ let
     git = pkgs.git;
   });
 
-  python = pkgs.python.withPackages (ps: [ ps.grip ]);
+  neovim = pkgs.callPackage ./neovim { inherit git tmux; };
+
+  python = pkgs.python.withPackages (ps: [
+    ps.grip
+  ]);
 
   tmux = import ./tmux (with pkgs; {
     inherit makeWrapper symlinkJoin writeText;
     tmux = pkgs.tmux;
   });
-
-  vim = pkgs.callPackage ./vim { inherit git tmux; };
 in
 {
   bashrc = bashrc;
   git = git;
+  neovim = neovim;
   python = python;
   tmux = tmux;
-  vim = vim;
 }
