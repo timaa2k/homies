@@ -4,15 +4,12 @@
 { sources
 , git
 , coreutils
-, cargo
 , tmux
 , symlinkJoin
 , makeWrapper
 , vim_configurable
 , vimUtils
 , vimPlugins
-, haskellPackages
-, rusty-tags
 , lib
 , ctags
 , python37
@@ -66,7 +63,7 @@ symlinkJoin {
   postBuild = ''
     wrapProgram "$out/bin/vim" \
     --add-flags "-u ${customRC}" \
-      --set PATH '${python37}/bin:${coreutils}/bin:${cargo}/bin:${ctags}/bin:${rusty-tags}/bin:${haskellPackages.hasktags}/bin:${git}/bin:${tmux}/bin'
+      --set PATH '${python37}/bin:${coreutils}/bin:${ctags}/bin:${git}/bin:${tmux}/bin'
   '';
   paths = [ vim ];
 }

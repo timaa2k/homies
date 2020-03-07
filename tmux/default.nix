@@ -1,4 +1,3 @@
-# Tmux with ./tmux.conf baked in
 { tmux, writeText, symlinkJoin, makeWrapper }:
 symlinkJoin {
   name = "tmux";

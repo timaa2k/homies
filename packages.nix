@@ -1,39 +1,24 @@
 with { pkgs = import ./nix {}; };
 let
-  python = pkgs.python.withPackages (ps: [ ps.grip ]);
-
   bashrc = pkgs.callPackage ./bashrc {};
 
-  git = import ./git (
-    { inherit (pkgs) makeWrapper symlinkJoin writeTextFile;
-      git = pkgs.git;
-    });
+  git = import ./git ({
+    inherit (pkgs) makeWrapper symlinkJoin writeTextFile;
+    git = pkgs.git;
+  });
 
-  tmux = import ./tmux (with pkgs;
-    { inherit
-        makeWrapper
-        symlinkJoin
-        writeText
-        ;
-      tmux = pkgs.tmux;
-    });
+  python = pkgs.python.withPackages (ps: [ ps.grip ]);
 
-  naersk = pkgs.callPackage pkgs.sources.naersk {};
+  tmux = import ./tmux (with pkgs; {
+    inherit makeWrapper symlinkJoin writeText;
+    tmux = pkgs.tmux;
+  });
 
-  rusty-tags = naersk.buildPackage pkgs.sources.rusty-tags;
-  nixpkgs-fmt = naersk.buildPackage pkgs.sources.nixpkgs-fmt;
-
-  vim = pkgs.callPackage ./vim
-    { inherit
-        git
-        tmux
-        rusty-tags;
-    };
+  vim = pkgs.callPackage ./vim { inherit git tmux; };
 in
 {
   bashrc = bashrc;
   git = git;
-  nixpkgs-fmt = nixpkgs-fmt;
   python = python;
   tmux = tmux;
   vim = vim;

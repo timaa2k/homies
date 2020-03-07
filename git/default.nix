@@ -1,4 +1,3 @@
-# Git, with a git config baked in (see ./config)
 { git, symlinkJoin, makeWrapper, writeTextFile }:
 with
   { gitHome = writeTextFile

@@ -1,23 +1,18 @@
-# The main homies file, where homies are defined. See the README.md for
-# instructions.
 with { pkgs = import ./nix {}; };
 let
+  custom = import ./packages.nix;
 
-  # The list of packages to be installed
   homies = with pkgs;
     [
-      # Customized packages
-      bashrc
-      git
-      nixpkgs-fmt
-      python
-      tmux
-      vim
+      custom.bashrc
+      custom.git
+      custom.python
+      custom.tmux
+      custom.vim
 
       pkgs.curl
       pkgs.fzf
       pkgs.gnupg
-      pkgs.haskellPackages.wai-app-static
       pkgs.htop
       pkgs.jq
       pkgs.less
@@ -29,41 +24,6 @@ let
       pkgs.tree
       pkgs.xclip
     ];
-
-  ## Some customizations
-  python = pkgs.python.withPackages (ps: [ ps.grip ]);
-
-  # A custom '.bashrc' (see bashrc/default.nix for details)
-  bashrc = pkgs.callPackage ./bashrc {};
-
-  # Git with config baked in
-  git = import ./git (
-    { inherit (pkgs) makeWrapper symlinkJoin writeTextFile;
-      git = pkgs.git;
-    });
-
-  # Tmux with a custom tmux.conf baked in
-  tmux = import ./tmux (with pkgs;
-    { inherit
-        makeWrapper
-        symlinkJoin
-        writeText
-        ;
-      tmux = pkgs.tmux;
-    });
-
-  naersk = pkgs.callPackage pkgs.sources.naersk {};
-
-  rusty-tags = naersk.buildPackage pkgs.sources.rusty-tags;
-  nixpkgs-fmt = naersk.buildPackage pkgs.sources.nixpkgs-fmt;
-
-  # Vim with a custom vimrc and set of packages
-  vim = pkgs.callPackage ./vim
-    { inherit
-        git
-        tmux
-        rusty-tags;
-    };
 
 in
   if pkgs.lib.inNixShell

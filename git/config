@@ -1,7 +1,7 @@
 [core]
     excludesfile = SUBSTITUTE_GITIGNORE
 [user]
-    name = Nicolas Mattia
+    name = Tim Weidner
 [alias]
     co = checkout
     br = branch
