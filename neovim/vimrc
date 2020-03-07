@@ -1,9 +1,9 @@
 syntax on
 color smyck
-"highlight Pmenu guibg=white guifg=black gui=bold
-"highlight Comment gui=bold
-"highlight Normal gui=none
-"highlight NonText guibg=none
+highlight Pmenu guibg=white guifg=black gui=bold
+highlight Comment gui=bold
+highlight Normal gui=none
+highlight NonText guibg=none
 
 set mouse=a
 set wrapscan
@@ -12,7 +12,7 @@ set smartcase
 set splitbelow
 set splitright
 
-"set termguicolors
+set termguicolors
 
 filetype plugin indent on
 set autoindent
