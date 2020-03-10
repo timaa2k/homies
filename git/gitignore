@@ -1,4 +1,17 @@
+*~
+.Trash-*
+.nfs*
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+\#*\#
+*.elc
+tramp
+.\#*
+result/
 result
 result-*
 *.swp
 tags
+.envrc

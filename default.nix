@@ -1,28 +1,33 @@
-with { pkgs = import ./nix {}; };
 let
-  custom = import ./packages.nix;
+  sources = import ./nix/sources.nix;
+  overlay = import ./overlay.nix;
+
+  pkgs = import sources.nixpkgs {
+    overlays = [ overlay ];
+    config = {};
+  };
 
   homies = with pkgs;
     [
-      custom.bashrc
-      custom.git
-      custom.python
-      custom.tmux
-      custom.neovim
+      bashrc
+      myGit
+      #myNeovim
+      python
+      tmux
+      #niv
 
-      pkgs.curl
-      pkgs.fzf
-      pkgs.gnupg
-      pkgs.htop
-      pkgs.jq
-      pkgs.less
-      pkgs.moreutils
-      pkgs.niv
-      pkgs.nix
-      pkgs.nix-diff
-      pkgs.pass
-      pkgs.tree
-      pkgs.xclip
+      curl
+      fzf
+      gnupg
+      htop
+      jq
+      less
+      moreutils
+      nix
+      nix-diff
+      pass
+      tree
+      xclip
     ];
 
 in

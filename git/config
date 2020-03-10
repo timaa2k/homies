@@ -1,15 +1,46 @@
+[advice]
+statusHints=false
+
+[apply]
+whitespace=nowarn
+
+[branch]
+autosetuprebase=always
+
+[color]
+ui=true
+
 [core]
-    excludesfile = SUBSTITUTE_GITIGNORE
+  autocrlf=false
+  excludesfile = SUBSTITUTE_GITIGNORE
+
 [user]
-    name = Tim Weidner
+  name = Tim Weidner
+  email = timaa2k@gmail.com
+
 [alias]
-    co = checkout
-    br = branch
-    ci = commit
-    st = status
-    graph = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-    infograph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+  co = checkout
+  br = branch
+  ci = commit
+  st = status
+  graph = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  infograph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+
+[diff]
+algorithm=patience
+mnemonicPrefix=true
+
+[format]
+pretty=format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+
 [push]
-    default = simple
+  default=upstream
+
 [url "git@github.com:"]
-    insteadOf = https://github.com/
+  insteadOf = https://github.com/
+
+[merge]
+  conflictstyle=diff3
+  ff=only
+  summary=true
+  verbosity=1

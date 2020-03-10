@@ -4,9 +4,8 @@
 #
 # The bashrc script should be evaluated from the actual ~/.bashrc:
 #   if [ -x "$(command -v bashrc)" ]; then $(bashrc); fi
-{ lib, writeText, writeScriptBin, fzf, sources, cacert }:
+{ lib, writeText, writeScriptBin, cacert, fzf, sources}:
 let
-  nixpkgsSpec = sources.nixpkgs;
   bashrc = writeText "bashrc"
     (lib.concatStringsSep "\n"
     [ (builtins.readFile ./bashrc)
