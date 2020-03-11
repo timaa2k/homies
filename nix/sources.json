@@ -17,22 +17,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6e966de055edb820e455cffc7e07bf66aa3dda78",
-        "sha256": "1al06125rqip36p3jb72s23abz58qy7dc9bj611sigp9qy6x4g61",
+        "rev": "00108868bbedf880af5b568c61103275b09513af",
+        "sha256": "15r8dra1p0h4k4fwhs97yl4bnaz7dqjka6a984749xli7y1p0z5g",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/6e966de055edb820e455cffc7e07bf66aa3dda78.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "vim-terraform": {
-        "branch": "master",
-        "description": "basic vim/terraform integration",
-        "homepage": "http://hashivim.github.io/vim-terraform",
-        "owner": "hashivim",
-        "repo": "vim-terraform",
-        "rev": "6ee2aab70d8cd3d2405b3042141c94766ea461b0",
-        "sha256": "1zld21a0l94hg3qvpb6rzi8kvv9f86mn7pl95rjvs022vfprry05",
-        "type": "tarball",
-        "url": "https://github.com/hashivim/vim-terraform/archive/6ee2aab70d8cd3d2405b3042141c94766ea461b0.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/00108868bbedf880af5b568c61103275b09513af.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

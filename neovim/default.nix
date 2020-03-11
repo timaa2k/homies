@@ -6,20 +6,17 @@
 , makeWrapper
 , neovim
 , vimPlugins
-, vimUtils
 , ctags
 , python37
 }:
 let
   extraPackages = with vimPlugins; [
-    ctrlp
-    elm-vim
+    #ctrlp
     fugitive
     nerdcommenter
     nerdtree
     surround
     syntastic
-    #tmux-navigator
     vim-airline
     vim-colorschemes
     vim-easymotion
@@ -27,17 +24,12 @@ let
     vim-markdown
     vim-multiple-cursors
     vim-nix
-    vim-toml
+    vim-terraform
     vim-tmux-navigator
+    vim-toml
     vim-trailing-whitespace
     vimproc
     youcompleteme
-    (vimUtils.buildVimPlugin
-      { name = "vim-terraform";
-        src = sources.vim-terraform;
-        buildPhase = ":";
-      }
-    )
   ];
   myNeovim = neovim.override {
     configure.customRC = builtins.readFile ./vimrc;

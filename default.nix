@@ -25,7 +25,6 @@ let
       less
       moreutils
       nix
-      nix-diff
       pass
       tree
       xclip
