@@ -12,7 +12,7 @@ let
       dot-bash
       dot-git
       dot-neovim
-      tmux
+      dot-tmux
 
       niv
       python

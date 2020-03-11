@@ -12,15 +12,17 @@ let
       buildInputs = (oa.buildInputs or []) ++ self.stdenv.lib.optional self.stdenv.isDarwin self.darwin.Security;
   });
 
+  dot-bash = super.callPackage ./bash { sources = sources; };
   dot-git = super.callPackage ./git {};
   dot-neovim = super.callPackage ./neovim { sources = sources; };
-  dot-bash = super.callPackage ./bash { sources = sources; };
+  dot-tmux = super.callPackage ./tmux {};
 in
 {
   sources = sources;
   niv = niv;
   rustracerd = rustracerd;
+  dot-bash = dot-bash;
   dot-git = dot-git;
   dot-neovim = dot-neovim;
-  dot-bash = dot-bash;
+  dot-tmux = dot-tmux;
 }
