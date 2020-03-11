@@ -9,12 +9,13 @@ let
 
   homies = with pkgs;
     [
-      bashrc
-      myGit
-      #myNeovim
-      python
+      dot-bash
+      dot-git
+      dot-neovim
       tmux
-      #niv
+
+      niv
+      python
 
       curl
       fzf
