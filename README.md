@@ -1,12 +1,14 @@
 # Homies
 
-Reproducible set of dotfiles and packages for Linux and macOS
+Reproducible set of dotfiles and packages for Linux and macOS.
+
 Greatly inspired by the the original [Homies][repo].
 
 [repo]: https://github.com/nmattia/homies
+
 ---
 
-Ubuntu machine with `curl` and `sudo` available:
+Install directly on a Ubuntu machine with `curl` and `sudo` available:
 
 ``` shell
 sh <(curl https://nixos.org/nix/install) --no-daemon
