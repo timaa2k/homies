@@ -1,14 +1,17 @@
-# homies
+# Homies
 
 Reproducible set of dotfiles and packages for Linux and macOS
+Greatly inspired by the the original [Homies][repo].
 
+[repo]: https://github.com/nmattia/homies
 ---
 
 Ubuntu machine with `curl` and `sudo` available:
 
 ``` shell
 sh <(curl https://nixos.org/nix/install) --no-daemon
-nix-env -if https://github.com/nmattia/homies/tarball/master --remove-all
+source ~/.nix-profile/etc/profile.d/nix.sh
+nix-env -if https://github.com/timaa2k/homies/tarball/master --remove-all
 echo 'if [ -x "$(command -v bashrc)" ]; then $(bashrc); fi' >> ~/.bashrc
 ```
 
