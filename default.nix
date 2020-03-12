@@ -11,8 +11,13 @@ let
     [
       dot-bash
       dot-git
-      dot-neovim
       dot-tmux
+      dot-neovim
+      (python3.withPackages (p: with p; [
+        python-language-server
+        pyls-mypy
+        pyls-isort
+      ]))
 
       niv
       python

@@ -10,31 +10,38 @@
 , python37
 }:
 let
-  extraPackages = with vimPlugins; [
-    #ctrlp
-    fugitive
-    nerdcommenter
-    nerdtree
-    surround
-    syntastic
-    vim-airline
-    vim-colorschemes
-    vim-easymotion
-    vim-indent-guides
-    vim-markdown
-    vim-multiple-cursors
-    vim-nix
-    vim-terraform
-    vim-tmux-navigator
-    vim-toml
-    vim-trailing-whitespace
-    vimproc
-    youcompleteme
-  ];
   myNeovim = neovim.override {
+    vimAlias = true;
+    viAlias = true;
+    withPython = false;
+    withPython3 = true;
+    withRuby = false;
     configure.customRC = builtins.readFile ./vimrc;
     configure.packages.myVimPackage = {
-      start = extraPackages;
+      start = with vimPlugins; [
+        # UI
+        vim-airline
+        vim-colorschemes
+
+        # IDE
+        #ctrlp
+        nerdtree
+        fugitive
+        syntastic
+        vim-tmux-navigator
+        vim-trailing-whitespace
+        youcompleteme
+
+        # Utils
+        nerdcommenter
+        surround
+
+        # Language Specific Plugins
+        LanguageClient-neovim
+        vim-nix
+        vim-terraform
+        vim-toml
+      ];
     };
   };
 in
