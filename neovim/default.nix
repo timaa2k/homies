@@ -30,7 +30,13 @@ let
         syntastic
         vim-tmux-navigator
         vim-trailing-whitespace
-        youcompleteme
+        #youcompleteme
+        ncm2
+        coc-nvim
+        coc-go
+        coc-json
+        coc-python
+        coc-yaml
 
         # Utils
         nerdcommenter

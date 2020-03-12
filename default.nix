@@ -14,10 +14,12 @@ let
       dot-tmux
       dot-neovim
       (python3.withPackages (p: with p; [
+        pynvim
         python-language-server
         pyls-mypy
         pyls-isort
       ]))
+      nodejs
 
       niv
       python
