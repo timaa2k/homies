@@ -14,7 +14,7 @@ let
 
   dot-bash = super.callPackage ./bash { sources = sources; };
   dot-git = super.callPackage ./git {};
-  dot-neovim = super.callPackage ./neovim { sources = sources; };
+  dot-neovim = super.callPackage ./nvim { sources = sources; };
   dot-tmux = super.callPackage ./tmux {};
 in
 {

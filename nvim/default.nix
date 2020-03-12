@@ -24,26 +24,27 @@ let
         vim-colorschemes
 
         # IDE
-        #ctrlp
         nerdtree
         fugitive
-        syntastic
         vim-tmux-navigator
         vim-trailing-whitespace
-        #youcompleteme
-        ncm2
+        denite
         coc-nvim
-        coc-go
-        coc-json
-        coc-python
-        coc-yaml
+        # FIXME(tim): Coc plugins are currently not in compiled form.
+        # The workaround is to install them manually via :CocInstall
+        # https://github.com/neoclide/coc.nvim/issues/559#issuecomment-546155113
+        #coc-pairs
+        #coc-prettier
+        #coc-go
+        #coc-python
+        #coc-json
+        #coc-yaml
 
         # Utils
         nerdcommenter
         surround
 
         # Language Specific Plugins
-        LanguageClient-neovim
         vim-nix
         vim-terraform
         vim-toml

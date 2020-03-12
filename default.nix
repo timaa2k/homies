@@ -20,9 +20,13 @@ let
         pyls-isort
       ]))
       nodejs
+      ripgrep
 
       niv
       python
+      go
+      godef
+      gotools
 
       curl
       fzf
