@@ -111,6 +111,9 @@ hi Interpolation        cterm=none ctermbg=none ctermfg=6           gui=none    
 " ============================================================================ "
 " ===                                MISC                                  === "
 " ============================================================================ "
+"
+" Automatically re-read files on focus
+au FocusLost,WinLeave * :silent! noautocmd w
 
 " improved keyboard navigation
 nnoremap <C-h> <C-w>h

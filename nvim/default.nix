@@ -27,6 +27,8 @@ let
         # IDE
         nerdtree
         fugitive
+        vim-gitgutter
+        vim-commentary
         vim-tmux-navigator
         vim-trailing-whitespace
         denite
@@ -42,7 +44,6 @@ let
         #coc-yaml
 
         # Utils
-        nerdcommenter
         surround
 
         # Language Specific Plugins
