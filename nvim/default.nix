@@ -22,6 +22,7 @@ let
         # UI
         vim-airline
         vim-colorschemes
+        papercolor-theme
 
         # IDE
         nerdtree
