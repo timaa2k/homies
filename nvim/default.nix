@@ -21,18 +21,22 @@ let
       start = with vimPlugins; [
         # UI
         vim-airline
+        vim-airline-themes
         vim-colorschemes
+        onehalf
         papercolor-theme
 
         # IDE
         vim-sensible
         nerdtree
+        nerdtree-git-plugin
         fugitive
         vim-gitgutter
         vim-commentary
         vim-tmux-navigator
         vim-trailing-whitespace
-        denite
+        denite-nvim
+        denite-git
         coc-nvim
         # FIXME(tim): Coc plugins are currently not in compiled form.
         # The workaround is to install them manually via :CocInstall
