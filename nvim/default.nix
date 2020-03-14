@@ -25,6 +25,7 @@ let
         papercolor-theme
 
         # IDE
+        vim-sensible
         nerdtree
         fugitive
         vim-gitgutter
