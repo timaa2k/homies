@@ -27,6 +27,7 @@ let
       go
       godef
       gotools
+      tmuxp
 
       curl
       fzf
