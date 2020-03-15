@@ -27,6 +27,7 @@ let
         papercolor-theme
 
         # IDE
+        echodoc
         vim-sensible
         nerdtree
         nerdtree-git-plugin
