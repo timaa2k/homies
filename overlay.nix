@@ -14,6 +14,7 @@ let
 
   dot-bash = super.callPackage ./bash { sources = sources; };
   dot-git = super.callPackage ./git {};
+  dot-lf = super.callPackage ./lf {};
   dot-neovim = super.callPackage ./nvim { sources = sources; };
   dot-tmux = super.callPackage ./tmux {};
 in
@@ -23,6 +24,7 @@ in
   rustracerd = rustracerd;
   dot-bash = dot-bash;
   dot-git = dot-git;
+  dot-lf = dot-lf;
   dot-neovim = dot-neovim;
   dot-tmux = dot-tmux;
 }

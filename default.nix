@@ -11,6 +11,7 @@ let
     [
       dot-bash
       dot-git
+      dot-lf
       dot-tmux
       dot-neovim
       (python3.withPackages (p: with p; [
