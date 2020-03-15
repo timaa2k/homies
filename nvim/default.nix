@@ -17,14 +17,11 @@ let
     withPython3 = true;
     withRuby = false;
     configure.customRC = builtins.readFile ./vimrc;
-    # Use Vim-Plug over native plugins due to Denite issue:
-    # https://github.com/Shougo/denite.nvim/issues/441
-    configure.plug.plugins = with vimPlugins; [
-        # UI
+    configure.packages.MyVimPackages = with vimPlugins; {
+      start = [
         vim-airline
         vim-airline-themes
         vim-colorschemes
-        onehalf
         papercolor-theme
 
         # IDE
@@ -37,8 +34,9 @@ let
         vim-commentary
         vim-tmux-navigator
         vim-trailing-whitespace
-        denite-nvim
-        denite-git
+        #denite-nvim
+        #denite-git
+        fzf-vim
         coc-nvim
         # FIXME(tim): Coc plugins are currently not in compiled form.
         # The workaround is to install them manually via :CocInstall
@@ -59,6 +57,7 @@ let
         vim-toml
       ];
     };
+  };
 in
 symlinkJoin {
   name = "neovim";

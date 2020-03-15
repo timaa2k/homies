@@ -22,6 +22,7 @@ let
       ]))
       nodejs
       ripgrep
+      fzf
 
       niv
       python
@@ -31,7 +32,6 @@ let
       tmuxp
 
       curl
-      fzf
       gnupg
       htop
       jq
