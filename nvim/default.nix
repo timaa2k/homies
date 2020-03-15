@@ -17,8 +17,9 @@ let
     withPython3 = true;
     withRuby = false;
     configure.customRC = builtins.readFile ./vimrc;
-    configure.packages.myVimPackage = {
-      start = with vimPlugins; [
+    # Use Vim-Plug over native plugins due to Denite issue:
+    # https://github.com/Shougo/denite.nvim/issues/441
+    configure.plug.plugins = with vimPlugins; [
         # UI
         vim-airline
         vim-airline-themes
@@ -58,7 +59,6 @@ let
         vim-toml
       ];
     };
-  };
 in
 symlinkJoin {
   name = "neovim";
