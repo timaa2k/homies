@@ -42,6 +42,7 @@ neovim.override {
 
       # Utils
       surround
+      vim-css-color
 
       # Language Specific Plugins
       vim-nix
