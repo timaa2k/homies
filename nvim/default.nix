@@ -1,7 +1,29 @@
 { sources
 , neovim
 , vimPlugins
+, vimUtils
+, fetchFromGitHub
 }:
+let
+  vim-colortuner = vimUtils.buildVimPlugin {
+    name = "vim-colortuner";
+    src = fetchFromGitHub {
+      owner = "zefei";
+      repo = "vim-colortuner";
+      rev = "92a4e5ee035485fbde0f5921492083aa37faa2cc";
+      sha256 = "1njmr3dsh90h2db7fkplfxjdn3sflyw9xsayb019ki6w40p5qvxg";
+    };
+  };
+  vim-wintabs = vimUtils.buildVimPlugin {
+    name = "vim-wintabs";
+    src = fetchFromGitHub {
+      owner = "zefei";
+      repo = "vim-wintabs";
+      rev = "6d18d62ae0f293a108afee8c514706027faefcf3";
+      sha256 = "0n677r3snif7rq0z3l16ig9w9vb855ghf2p89n1l0z1s9y8619k0";
+    };
+  };
+in
 neovim.override {
   vimAlias = true;
   viAlias = true;
@@ -11,12 +33,12 @@ neovim.override {
   configure.customRC = builtins.readFile ./vimrc;
   configure.packages.MyVimPackages = with vimPlugins; {
     start = [
-      vim-airline
-      vim-airline-themes
       vim-colorschemes
+      vim-colortuner
       papercolor-theme
 
       # IDE
+      vim-wintabs
       echodoc
       vim-sensible
       nerdtree

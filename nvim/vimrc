@@ -125,71 +125,6 @@ augroup mygroup
 augroup end
 
 
-"" ============================================================================ "
-"" ===                         Denite PLUGIN CONFIG                         === "
-"" ============================================================================ "
-"" Use ripgrep for searching current directory for files
-"" By default, ripgrep will respect rules in .gitignore
-""   --files: Print each file that would be searched (but don't search)
-""   --glob:  Include or exclues files for searching that match the given glob
-""            (aka ignore .git files)
-""
-"call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
-""
-"" Use ripgrep in place of "grep"
-"call denite#custom#var('grep', 'command', ['rg'])
-
-"" Custom options for ripgrep
-""   --vimgrep:  Show results with every match on it's own line
-""   --hidden:   Search hidden directories and files
-""   --heading:  Show the file name above clusters of matches from each file
-""   --S:        Search case insensitively if the pattern is all lowercase
-"call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--heading', '-S'])
-
-"" Recommended defaults for ripgrep via Denite docs
-"call denite#custom#var('grep', 'recursive_opts', [])
-"call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-"call denite#custom#var('grep', 'separator', ['--'])
-"call denite#custom#var('grep', 'final_opts', [])
-
-"" Remove date from buffer list
-"call denite#custom#var('buffer', 'date_format', '')
-
-"" Custom options for Denite
-""   auto_resize             - Auto resize the Denite window height automatically.
-""   prompt                  - Customize denite prompt
-""   direction               - Specify Denite window direction as directly below current pane
-""   winminheight            - Specify min height for Denite window
-""   highlight_mode_insert   - Specify h1-CursorLine in insert mode
-""   prompt_highlight        - Specify color of prompt
-""   highlight_matched_char  - Matched characters highlight
-""   highlight_matched_range - matched range highlight
-"let s:denite_options = {'default' : {
-"\ 'split': 'floating',
-"\ 'start_filter': 1,
-"\ 'auto_resize': 1,
-"\ 'source_names': 'short',
-"\ 'prompt': 'λ ',
-"\ 'highlight_matched_char': 'QuickFixLine',
-"\ 'highlight_matched_range': 'Visual',
-"\ 'highlight_window_background': 'Visual',
-"\ 'highlight_filter_background': 'DiffAdd',
-"\ 'winrow': 1,
-"\ 'vertical_preview': 1
-"\ }}
-
-"" Loop through denite options and enable them
-"function! s:profile(opts) abort
-"  for l:fname in keys(a:opts)
-"    for l:dopt in keys(a:opts[l:fname])
-"      call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
-"    endfor
-"  endfor
-"endfunction
-
-"call s:profile(s:denite_options)
-
-
 " ============================================================================ "
 " ===                         Echodoc PLUGIN CONFIG                        === "
 " ============================================================================ "
@@ -203,8 +138,8 @@ let g:echodoc#type = 'signature'
 " ===                         NERDTree PLUGIN CONFIG                       === "
 " ============================================================================ "
 
-" Always show NERDTree to the right.
-let g:NERDTreeWinPos = "right"
+" Always show NERDTree to the left.
+let g:NERDTreeWinPos = "left"
 
 " Delete the buffer when deleting a file via NERDTree.
 let NERDTreeAutoDeleteBuffer = 1
@@ -222,6 +157,23 @@ let NERDTreeMinimalUI = 1
 "
 " Automatically close NERDTree after opening a file.
 let NERDTreeQuitOnOpen = 1
+
+
+" ============================================================================ "
+" ===                        WinTabs PLUGIN CONFIG                         === "
+" ============================================================================ "
+
+let g:wintabs_display = 'statusline'
+let g:wintabs_autoclose = 1
+let g:wintabs_autoclose_vim = 1
+let g:wintabs_autoclose_vimtab = 1
+let g:wintabs_switchbuf = ''
+let g:wintabs_ui_modified = '+'
+let g:wintabs_ui_readonly = '-'
+let g:wintabs_ui_sep_leftmost = ''
+let g:wintabs_ui_sep_inbetween = ''
+let g:wintabs_ui_sep_rightmost = ''
+let g:wintabs_ui_active_higroup = 'Search'
 
 
 " ============================================================================ "
@@ -244,8 +196,17 @@ tnoremap <C-w>j <C-\><C-n><C-w>j
 tnoremap <C-w>k <C-\><C-n><C-w>k
 tnoremap <C-w>l <C-\><C-n><C-w>l
 
-nnoremap <silent> <C-t> :NERDTreeToggle<Enter>
-nnoremap <silent> <C-r> :NERDTreeFind<CR>
+
+" === WinTab Shortcuts === "
+"
+nnoremap <Tab> :WintabsNext<CR>
+nnoremap <S-Tab> :WintabsPrevious<CR>
+
+
+" === NERDTree Shortcuts === "
+
+nnoremap <silent> <C-\> :NERDTreeToggle<Enter>
+nnoremap <silent> <C-t> :NERDTreeFind<CR>
 
 
 " === Coc-nvim Shorcuts === "
@@ -308,8 +269,8 @@ omap af <Plug>(coc-funcobj-a)
 " Use <TAB> for selections ranges.
 " NOTE: Requires 'textDocument/selectionRange' support from the language server.
 " coc-tsserver, coc-python are the examples of servers that support it.
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
+"nmap <silent> <TAB> <Plug>(coc-range-select)
+"xmap <silent> <TAB> <Plug>(coc-range-select)
 
 
 " Mappings using CoCList:
@@ -331,114 +292,45 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 
-" " === Denite Shorcuts === "
-" "   ;         - Browser currently open buffers
-" "   <C-p> - Browse list of files in current directory
-" "   <C-f>g - Search current directory for occurences of given term and close window if no results
-" "   <C-s> - Search current directory for occurences of word under cursor
-" nmap ; :Denite buffer<CR>
-" nmap <C-p> :DeniteProjectDir file/rec<CR>
-" nnoremap <C-f> :<C-u>Denite grep:. -no-empty<CR>
-" nnoremap <C-s> :<C-u>DeniteCursorWord grep:.<CR>
-
-" " Define mappings while in 'filter' mode
-" "   <C-o>         - Switch to normal mode inside of search results
-" "   <Esc>         - Exit denite window in any mode
-" "   <CR>          - Open currently selected file in any mode
-" "   <C-t>         - Open currently selected file in a new tab
-" "   <C-v>         - Open currently selected file a vertical split
-" "   <C-h>         - Open currently selected file in a horizontal split
-" autocmd FileType denite-filter call s:denite_filter_my_settings()
-" function! s:denite_filter_my_settings() abort
-"   imap <silent><buffer> <C-o>
-"   \ <Plug>(denite_filter_quit)
-"   inoremap <silent><buffer><expr> <Esc>
-"   \ denite#do_map('quit')
-"   nnoremap <silent><buffer><expr> <Esc>
-"   \ denite#do_map('quit')
-"   inoremap <silent><buffer><expr> <CR>
-"   \ denite#do_map('do_action')
-"   inoremap <silent><buffer><expr> <C-t>
-"   \ denite#do_map('do_action', 'tabopen')
-"   inoremap <silent><buffer><expr> <C-v>
-"   \ denite#do_map('do_action', 'vsplit')
-"   inoremap <silent><buffer><expr> <C-h>
-"   \ denite#do_map('do_action', 'split')
-" endfunction
-
-" " Define mappings while in denite window
-" "   <CR>        - Opens currently selected file
-" "   q or <Esc>  - Quit Denite window
-" "   d           - Delete currenly selected file
-" "   p           - Preview currently selected file
-" "   <C-o> or i  - Switch to isert mode inside of filter prompt
-" "   <C-t>       - Open currently selected file in a new tab
-" "   <C-v>       - Open currently selected file a vertical split
-" "   <C-h>       - Open currently selected file in a horizontal split
-" autocmd FileType denite call s:denite_my_settings()
-" function! s:denite_my_settings() abort
-"   nnoremap <silent><buffer><expr> <CR>
-"   \ denite#do_map('do_action')
-"   nnoremap <silent><buffer><expr> q
-"   \ denite#do_map('quit')
-"   nnoremap <silent><buffer><expr> <Esc>
-"   \ denite#do_map('quit')
-"   nnoremap <silent><buffer><expr> d
-"   \ denite#do_map('do_action', 'delete')
-"   nnoremap <silent><buffer><expr> p
-"   \ denite#do_map('do_action', 'preview')
-"   nnoremap <silent><buffer><expr> i
-"   \ denite#do_map('open_filter_buffer')
-"   nnoremap <silent><buffer><expr> <C-o>
-"   \ denite#do_map('open_filter_buffer')
-"   nnoremap <silent><buffer><expr> <C-t>
-"   \ denite#do_map('do_action', 'tabopen')
-"   nnoremap <silent><buffer><expr> <C-v>
-"   \ denite#do_map('do_action', 'vsplit')
-"   nnoremap <silent><buffer><expr> <C-h>
-"   \ denite#do_map('do_action', 'split')
-" endfunction
-
-
 " ============================================================================ "
 " ===                              COLORSCHEME                             === "
 " ============================================================================ "
 
 set background=dark
 
-hi Normal               cterm=none ctermbg=none     ctermfg=15      gui=none        guibg=#282828   guifg=#F7F7F7
-hi LineNr               cterm=none ctermbg=none     ctermfg=8       gui=none        guibg=#282828   guifg=#8F8F8F
-hi StatusLine           cterm=none ctermbg=8        ctermfg=15      gui=none        guibg=#5D5D5D   guifg=#FBFBFB
-hi StatusLineNC         cterm=none ctermbg=15       ctermfg=8       gui=none        guibg=#5D5D5D   guifg=#FBFBFB
-hi Search               cterm=none ctermbg=6        ctermfg=15      gui=none        guibg=#2EB5C1   guifg=#F7F7F7
-hi IncSearch            cterm=none ctermbg=3        ctermfg=8       gui=none        guibg=#F6DC69   guifg=#8F8F8F
-hi ColumnMargin         cterm=none ctermbg=0                        gui=none        guibg=#000000
-hi Error                cterm=none ctermbg=124      ctermfg=15      gui=none                        guifg=#F7F7F7
-hi ErrorMsg             cterm=none ctermbg=124      ctermfg=15      gui=none                        guifg=#F7F7F7
-hi Folded               cterm=none ctermbg=8        ctermfg=2       gui=none        guibg=#3B3B3B   guifg=#90AB41
-hi FoldColumn           cterm=none ctermbg=8        ctermfg=2       gui=none        guibg=#3B3B3B   guifg=#90AB41
-hi NonText              cterm=bold ctermbg=none     ctermfg=8       gui=bold        guibg=none      guifg=#8F8F8F
-hi ModeMsg              cterm=bold ctermbg=none     ctermfg=10      gui=none
-hi Pmenu                cterm=none ctermbg=234      ctermfg=15      gui=none        guibg=#404040   guifg=#F7F7F7
-hi PmenuSel             cterm=none ctermbg=66       ctermfg=15      gui=bold        guibg=#D0D0D0   guifg=#404040
-hi PmenuSbar            cterm=none ctermbg=234      ctermfg=15      gui=bold        guibg=#F7F7F7   guifg=#8F8F8F
-hi SpellBad             cterm=none ctermbg=1        ctermfg=15      gui=none                        guifg=#F7F7F7
-hi SpellCap             cterm=none ctermbg=4        ctermfg=15      gui=none                        guifg=#F7F7F7
-hi SpellRare            cterm=none ctermbg=4        ctermfg=15      gui=none                        guifg=#F7F7F7
-hi SpellLocal           cterm=none ctermbg=4        ctermfg=15      gui=none                        guifg=#F7F7F7
-hi Visual               cterm=none ctermbg=15       ctermfg=8       gui=none        guibg=#F7F7F7   guifg=#8F8F8F
-hi Directory            cterm=none ctermbg=none     ctermfg=4       gui=none        guibg=#242424   guifg=#88CCE7
-hi SpecialKey           cterm=none ctermbg=none     ctermfg=8       gui=none                        guifg=#8F8F8F
-hi DiffAdd              cterm=bold ctermbg=2        ctermfg=15
-hi DiffChange           cterm=bold ctermbg=4        ctermfg=15
-hi DiffDelete           cterm=bold ctermbg=124      ctermfg=15
-hi DiffText             cterm=bold ctermbg=3        ctermfg=8
-hi MatchParen           cterm=none ctermbg=6        ctermfg=15      gui=none        guibg=#2EB5C1   guifg=#F7F7F7
-hi CursorLine           cterm=none ctermbg=234      ctermfg=none    gui=none        guibg=#333333
-hi CursorColumn         cterm=none ctermbg=234      ctermfg=none    gui=none        guibg=#424242
-hi Title                cterm=none ctermbg=none     ctermfg=4       gui=none                        guifg=#88CCE7
-hi VertSplit            cterm=bold ctermbg=238      ctermfg=8       gui=bold        guibg=#282828   guifg=#8F8F8F
-hi SignColumn           cterm=bold ctermbg=238      ctermfg=8       gui=bold        guibg=#282828   guifg=#8F8F8F
+hi Normal       cterm=none ctermbg=none ctermfg=15   gui=none guibg=#282828 guifg=#F7F7F7
+hi LineNr       cterm=none ctermbg=none ctermfg=8    gui=none guibg=#282828 guifg=#8F8F8F
+hi StatusLine   cterm=none ctermbg=8    ctermfg=15   gui=none guibg=#5D5D5D guifg=#FBFBFB
+hi StatusLineNC cterm=none ctermbg=15   ctermfg=8    gui=none guibg=#5D5D5D guifg=#FBFBFB
+hi Search       cterm=none ctermbg=6    ctermfg=15   gui=none guibg=#2EB5C1 guifg=#F7F7F7
+hi IncSearch    cterm=none ctermbg=3    ctermfg=8    gui=none guibg=#F6DC69 guifg=#8F8F8F
+hi ColumnMargin cterm=none ctermbg=0                 gui=none guibg=#000000
+hi Error        cterm=none ctermbg=124  ctermfg=15   gui=none               guifg=#F7F7F7
+hi ErrorMsg     cterm=none ctermbg=124  ctermfg=15   gui=none               guifg=#F7F7F7
+hi Folded       cterm=none ctermbg=8    ctermfg=2    gui=none guibg=#3B3B3B guifg=#90AB41
+hi FoldColumn   cterm=none ctermbg=8    ctermfg=2    gui=none guibg=#3B3B3B guifg=#90AB41
+hi NonText      cterm=bold ctermbg=none ctermfg=8    gui=bold guibg=none    guifg=#8F8F8F
+hi ModeMsg      cterm=bold ctermbg=none ctermfg=10   gui=none
+hi Pmenu        cterm=none ctermbg=234  ctermfg=15   gui=none guibg=#404040 guifg=#F7F7F7
+hi PmenuSel     cterm=none ctermbg=66   ctermfg=15   gui=bold guibg=#D0D0D0 guifg=#404040
+hi PmenuSbar    cterm=none ctermbg=234  ctermfg=15   gui=bold guibg=#F7F7F7 guifg=#8F8F8F
+hi SpellBad     cterm=none ctermbg=1    ctermfg=15   gui=none               guifg=#F7F7F7
+hi SpellCap     cterm=none ctermbg=4    ctermfg=15   gui=none               guifg=#F7F7F7
+hi SpellRare    cterm=none ctermbg=4    ctermfg=15   gui=none               guifg=#F7F7F7
+hi SpellLocal   cterm=none ctermbg=4    ctermfg=15   gui=none               guifg=#F7F7F7
+hi Visual       cterm=none ctermbg=15   ctermfg=8    gui=none guibg=#F7F7F7 guifg=#8F8F8F
+hi Directory    cterm=none ctermbg=none ctermfg=4    gui=none guibg=#242424 guifg=#88CCE7
+hi SpecialKey   cterm=none ctermbg=none ctermfg=8    gui=none               guifg=#8F8F8F
+hi DiffAdd      cterm=bold ctermbg=2    ctermfg=15
+hi DiffChange   cterm=bold ctermbg=4    ctermfg=15
+hi DiffDelete   cterm=bold ctermbg=124  ctermfg=15
+hi DiffText     cterm=bold ctermbg=3    ctermfg=8
+hi MatchParen   cterm=none ctermbg=6    ctermfg=15   gui=none guibg=#2EB5C1 guifg=#F7F7F7
+hi CursorLine   cterm=none ctermbg=234  ctermfg=none gui=none guibg=#333333
+hi CursorColumn cterm=none ctermbg=234  ctermfg=none gui=none guibg=#424242
+hi Title        cterm=none ctermbg=none ctermfg=4    gui=none               guifg=#88CCE7
+hi VertSplit    cterm=bold ctermbg=238  ctermfg=8    gui=bold guibg=#282828 guifg=#8F8F8F
+hi SignColumn   cterm=bold ctermbg=238  ctermfg=8    gui=bold guibg=#282828 guifg=#8F8F8F
 
 
 " ============================================================================ "
@@ -449,20 +341,20 @@ hi SignColumn           cterm=bold ctermbg=238      ctermfg=8       gui=bold    
 " https://github.com/hukl/Smyck-Color-Scheme/blob/master/smyck.vim
 " color smyck
 
-hi Keyword              cterm=none ctermbg=none ctermfg=10          gui=none        guifg=#D1FA71
-hi Comment              cterm=none ctermbg=none ctermfg=8           gui=bold        guifg=#8F8F8F
-hi Delimiter            cterm=none ctermbg=none ctermfg=15          gui=none        guifg=#F7F7F7
-hi Identifier           cterm=none ctermbg=none ctermfg=12          gui=none        guifg=#96D9F1
-hi Structure            cterm=none ctermbg=none ctermfg=12          gui=none        guifg=#9DEEF2
-hi Ignore               cterm=none ctermbg=none ctermfg=8           gui=none        guifg=bg
-hi Constant             cterm=none ctermbg=none ctermfg=12          gui=none        guifg=#96D9F1
-hi PreProc              cterm=none ctermbg=none ctermfg=10          gui=none        guifg=#D1FA71
-hi Type                 cterm=none ctermbg=none ctermfg=12          gui=none        guifg=#96D9F1
-hi Statement            cterm=none ctermbg=none ctermfg=10          gui=none        guifg=#D1FA71
-hi Special              cterm=none ctermbg=none ctermfg=6           gui=none        guifg=#d7d7d7
-hi String               cterm=none ctermbg=none ctermfg=3           gui=none        guifg=#F6DC69
-hi Number               cterm=none ctermbg=none ctermfg=3           gui=none        guifg=#F6DC69
-hi Underlined           cterm=none ctermbg=none ctermfg=magenta     gui=underline   guibg=#272727
-hi Symbol               cterm=none ctermbg=none ctermfg=9           gui=none        guifg=#FAB1AB
-hi Method               cterm=none ctermbg=none ctermfg=15          gui=none        guifg=#F7F7F7
-hi Interpolation        cterm=none ctermbg=none ctermfg=6           gui=none        guifg=#2EB5C1
+hi Keyword       cterm=none ctermbg=none ctermfg=10   gui=none      guifg=#D1FA71
+hi Comment       cterm=none ctermbg=none ctermfg=8    gui=bold      guifg=#8F8F8F
+hi Delimiter     cterm=none ctermbg=none ctermfg=15   gui=none      guifg=#F7F7F7
+hi Identifier    cterm=none ctermbg=none ctermfg=12   gui=none      guifg=#96D9F1
+hi Structure     cterm=none ctermbg=none ctermfg=12   gui=none      guifg=#9DEEF2
+hi Ignore        cterm=none ctermbg=none ctermfg=8    gui=none      guifg=bg
+hi Constant      cterm=none ctermbg=none ctermfg=12   gui=none      guifg=#96D9F1
+hi PreProc       cterm=none ctermbg=none ctermfg=10   gui=none      guifg=#D1FA71
+hi Type          cterm=none ctermbg=none ctermfg=12   gui=none      guifg=#96D9F1
+hi Statement     cterm=none ctermbg=none ctermfg=10   gui=none      guifg=#D1FA71
+hi Special       cterm=none ctermbg=none ctermfg=6    gui=none      guifg=#d7d7d7
+hi String        cterm=none ctermbg=none ctermfg=3    gui=none      guifg=#F6DC69
+hi Number        cterm=none ctermbg=none ctermfg=3    gui=none      guifg=#F6DC69
+hi Underlined    cterm=none ctermbg=none ctermfg=6    gui=underline guibg=#272727
+hi Symbol        cterm=none ctermbg=none ctermfg=9    gui=none      guifg=#FAB1AB
+hi Method        cterm=none ctermbg=none ctermfg=15   gui=none      guifg=#F7F7F7
+hi Interpolation cterm=none ctermbg=none ctermfg=6    gui=none      guifg=#2EB5C1
