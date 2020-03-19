@@ -34,12 +34,14 @@ set number
 ":augroup END
 set cursorline
 set ruler laststatus=2 showcmd showmode
+"set showtabline=2
+
+
 
 " Disable .swp already exists warning
 set shortmess+=A
 
 syntax on
-
 
 " Required by Coc-nvim
 
@@ -55,7 +57,7 @@ set cmdheight=2
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
-set updatetime=100
+set updatetime=300
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -63,6 +65,34 @@ set shortmess+=c
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 set signcolumn=yes
+
+
+" ============================================================================ "
+" ===                        STATUSLINE SETTINGS                           === "
+" ============================================================================ "
+
+set laststatus=2
+
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+set statusline=
+set statusline+=%#PmenuSel#
+set statusline+=%{StatuslineGit()}
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=%m
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\ %y
+set statusline+=\ %2p%%
+set statusline+=\ %3l\ :\ %-2c
 
 
 " ============================================================================ "
