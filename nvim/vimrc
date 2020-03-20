@@ -33,9 +33,7 @@ set number
 ":  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 ":augroup END
 set cursorline
-set ruler laststatus=2 showcmd showmode
-"set showtabline=2
-
+set ruler showcmd showmode
 
 
 " Disable .swp already exists warning
@@ -71,33 +69,43 @@ set signcolumn=yes
 " ===                        STATUSLINE SETTINGS                           === "
 " ============================================================================ "
 
+set showtabline=2
 set laststatus=2
+set noshowmode
 
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
+" let g:lightline.enable = {
+"     \ 'statusline': 1,
+"     \ 'tabline': 0
+"     \ }
 
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
+" function! GitBranch()
+"   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+" endfunction
 
-set statusline=
-set statusline+=%#PmenuSel#
-set statusline+=%{StatuslineGit()}
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=%m
-set statusline+=%=
-set statusline+=%#CursorColumn#
-set statusline+=\ %y
-set statusline+=\ %2p%%
-set statusline+=\ %3l\ :\ %-2c
+" function! StatuslineGit()
+"   let l:branchname = GitBranch()
+"   return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+" endfunction
+
+" set statusline=
+" set statusline+=%#PmenuSel#
+" set statusline+=%{fugitive#statusline()}
+" set statusline+=%#LineNr#
+" set statusline+=\ %f
+" set statusline+=%m
+" set statusline+=%=
+" set statusline+=%#CursorColumn#
+" set statusline+=\ %y
+" set statusline+=\ %2p%%
+" set statusline+=\ %3l\ :\ %-2c
 
 
 " ============================================================================ "
 " ===                     FILETYPE SPECIFIC SETTINGS                       === "
 " ============================================================================ "
+
+" Hack to ensure vim-wintabs is loaded after the lightline-vim plugin.
+autocmd VimEnter * packadd vim-wintabs
 
 " Golang
 autocmd Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
@@ -194,6 +202,7 @@ let NERDTreeQuitOnOpen = 1
 " ============================================================================ "
 
 let g:wintabs_display = 'statusline'
+let g:wintabs_statusline = '%!lightline#statusline(0)'
 let g:wintabs_autoclose = 1
 let g:wintabs_autoclose_vim = 1
 let g:wintabs_autoclose_vimtab = 1

@@ -31,14 +31,14 @@ neovim.override {
   withPython3 = true;
   withRuby = false;
   configure.customRC = builtins.readFile ./vimrc;
-  configure.packages.MyVimPackages = with vimPlugins; {
+  configure.packages.myVimPackages = with vimPlugins; {
     start = [
+      lightline-vim
       vim-colorschemes
       vim-colortuner
       papercolor-theme
 
       # IDE
-      vim-wintabs
       echodoc
       vim-sensible
       nerdtree
@@ -70,6 +70,9 @@ neovim.override {
       vim-nix
       vim-terraform
       vim-toml
+    ];
+    opt = [
+      vim-wintabs
     ];
   };
 }
