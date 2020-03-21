@@ -51,8 +51,8 @@ set hidden
 set nobackup
 set nowritebackup
 
-" Give more space for displaying messages.
-set cmdheight=2
+" Give normal space for displaying messages.
+set cmdheight=1
 
 " Empty echo area after entered command.
 autocmd CmdlineLeave * echo ''
