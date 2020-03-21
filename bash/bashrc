@@ -16,15 +16,19 @@ stty -ixon
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-alias gti="git"
+alias ..="cd ..";
+alias ls="exa -aF --group-directories-first"
+alias ll="exa -laHFgmB --group-directories-first --time-style=long-iso --git";
+alias la="ll";
+alias wd="j";
 alias :e="vim"
-alias gd="git diff"
+
 alias xo="xdg-open"
-alias grephs="grep --exclude-dir .stack-work --include '*.hs'"
 alias tmp='cd $(mktemp -d)'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+
+alias gti="git"
+alias gd="git diff"
+alias git-delete-merged="git branch --merged | egrep -v '(^\*|master|dev)' | xargs git branch -d"
 
 function t {
     if [ -n "$1" ]; then

@@ -11,6 +11,7 @@ let
     [
       dot-bash
       bash-completion
+      exa
       dot-git
       dot-lf
       dot-tmux
@@ -34,6 +35,7 @@ let
       gotools
       tmuxp
 
+      coreutils
       curl
       gnupg
       htop
@@ -43,6 +45,7 @@ let
       nix
       pass
       tree
+      utillinux
       xclip
     ];
 
