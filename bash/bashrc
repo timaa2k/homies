@@ -1,13 +1,18 @@
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
+##
+## prompt
+##
+
+#PS1='\[\033[01;34m\]\w\[\033[00m\]\$ '
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\]\n\$ "
 
 # No locking on Ctrl-S
 stty -ixon
@@ -16,53 +21,14 @@ stty -ixon
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-alias ..="cd ..";
-alias ls="exa -F --group-directories-first"
-alias ll="exa -lFBgm --group-directories-first"
-alias la="ll -a";
-alias wd="j";
-alias :e="vim"
-
-alias xo="xdg-open"
-alias tmp='cd $(mktemp -d)'
-
-alias gti="git"
-alias gd="git diff"
-alias git-delete-merged="git branch --merged | egrep -v '(^\*|master|dev)' | xargs git branch -d"
-
-function t {
-    if [ -n "$1" ]; then
-        cd "$1"
-    fi
-    tmux -2 new-session \; split-window -h \; attach
-}
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# GHC(i) with custom set of packages 
-ghc-shell() {
-  nix-shell -p "haskellPackages.ghcWithPackages (ps: with ps; [ $* ])"
-}
-
-ghci-with() {
-  nix-shell \
-    -p "haskellPackages.ghcWithPackages (ps: with ps; [ $* ])" \
-    --run ghci
-}
 
 ##
 ## history: http://mywiki.wooledge.org/BashFAQ/088
 ##
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
 
 # Big history
 HISTFILESIZE=10000
@@ -75,12 +41,6 @@ PROMPT_COMMAND="history -a"
 # histappend which causes all new history lines to be appended, and ensures
 # that multiple logins do not overwrite each other's history
 shopt -s histappend
-
-##
-## prompt
-##
-
-PS1='\[\033[01;34m\]\w\[\033[00m\]\$ '
 
 ##
 ## completion
@@ -110,6 +70,7 @@ fi
 ##
 ## fzf
 ##
+
 # FIXME(timaa2k): implicit dependency fzf-share
 if command -v fzf-share >/dev/null; then
   source "$(fzf-share)/completion.bash"
@@ -117,4 +78,37 @@ fi
 
 if command -v fzf-share >/dev/null; then
   source "$(fzf-share)/key-bindings.bash"
+fi
+
+##
+## Aliases
+##
+
+alias ..="cd ..";
+alias ls="exa -F --group-directories-first"
+alias ll="exa -lFBgm --group-directories-first"
+alias la="ll -a";
+alias wd="j";
+alias :e="vim"
+
+alias xo="xdg-open"
+alias tmp='cd $(mktemp -d)'
+
+alias gti="git"
+alias gd="git diff"
+alias git-delete-merged="git branch --merged | egrep -v '(^\*|master|dev)' | xargs git branch -d"
+
+function t {
+    if [ -n "$1" ]; then
+        cd "$1"
+    fi
+    tmux -2 new-session \; split-window -h \; attach
+}
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 fi
