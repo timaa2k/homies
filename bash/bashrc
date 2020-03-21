@@ -18,7 +18,7 @@ shopt -s checkwinsize
 
 alias ..="cd ..";
 alias ls="exa -aF --group-directories-first"
-alias ll="exa -laHFgmB --group-directories-first --time-style=long-iso --git";
+alias ll="exa -laFBgm --group-directories-first"
 alias la="ll";
 alias wd="j";
 alias :e="vim"
