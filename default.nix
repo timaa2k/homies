@@ -24,6 +24,7 @@ let
       ripgrep
       fzf
       bat
+      ncurses
 
       niv
       python
