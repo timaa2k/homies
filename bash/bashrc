@@ -124,7 +124,7 @@ __prompt_command() {
     PS1+="\u@\h ${BBlu}\w${RCol}${Gre}$(parse_git_branch)${RCol}\n"
 
     if [ $Exit != 0 ]; then
-        PS1+="${Red}[${Exit}]"
+        PS1+="${Red}[${Exit}] "
     fi
 
     PS1+="${RCol}\$ "
