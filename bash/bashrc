@@ -92,6 +92,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
-for bcfile in ~/.nix-profile/etc/bash_completion.d/* ; do
-  . $bcfile
-done
+if [ -d ~/.nix-profile/etc/bash_completion.d ]; then
+  for bcfile in ~/.nix-profile/etc/bash_completion.d/* ; do
+    . $bcfile
+  done
+fi
+
+if [ -d /run/current-system/sw/etc/bash_completion.d ]; then
+  for bcfile in /run/current-system/sw/etc/bash_completion.d/* ; do
+    . $bcfile
+  done
+fi

@@ -10,6 +10,7 @@ let
   homies = with pkgs;
     [
       dot-bash
+      bash-completion
       dot-git
       dot-lf
       dot-tmux
