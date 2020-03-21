@@ -4,14 +4,12 @@
 #
 # The bashrc script should be evaluated from the actual ~/.bashrc:
 #   if [ -x "$(command -v bashrc)" ]; then $(bashrc); fi
-{ lib, writeText, writeScriptBin, cacert, fzf, sources}:
+{ lib, writeText, writeScriptBin, cacert, sources}:
 let
   bashrc = writeText "bashrc"
     (lib.concatStringsSep "\n"
     [ (builtins.readFile ./bashrc)
       ''
-      source ${fzf}/share/fzf/completion.bash
-      source ${fzf}/share/fzf/key-bindings.bash
       NIX_PATH=nixpkgs=${sources.nixpkgs}
       export SSL_CERT_FILE=${cacert}/etc/ssl/certs/ca-bundle.crt
       ''

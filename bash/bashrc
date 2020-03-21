@@ -45,8 +45,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# GHC(i) with custom set of packages
-
+# GHC(i) with custom set of packages 
 ghc-shell() {
   nix-shell -p "haskellPackages.ghcWithPackages (ps: with ps; [ $* ])"
 }
@@ -98,8 +97,20 @@ if [ -d ~/.nix-profile/etc/bash_completion.d ]; then
   done
 fi
 
-if [ -d /run/current-system/sw/etc/bash_completion.d ]; then
-  for bcfile in /run/current-system/sw/etc/bash_completion.d/* ; do
+if [ -d ~/.nix-profile/share/bash-completion/completions ]; then
+  for bcfile in ~/.nix-profile/share/bash-completion/completions/* ; do
     . $bcfile
   done
+fi
+
+##
+## fzf
+##
+# FIXME(timaa2k): implicit dependency fzf-share
+if command -v fzf-share >/dev/null; then
+  source "$(fzf-share)/completion.bash"
+fi
+
+if command -v fzf-share >/dev/null; then
+  source "$(fzf-share)/key-bindings.bash"
 fi
