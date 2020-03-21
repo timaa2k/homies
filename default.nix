@@ -23,7 +23,7 @@ let
       nodejs
       ripgrep
       fzf
-      ps
+      bat
 
       niv
       python
