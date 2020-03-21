@@ -44,6 +44,7 @@ syntax on
 " Required by Coc-nvim
 
 " TextEdit might fail if hidden is not set.
+" Downsides removed by Wintabs
 set hidden
 
 " Some servers have issues with backup files, see #649.
@@ -259,13 +260,16 @@ tnoremap <C-w>l <C-\><C-n><C-w>l
 
 " === WinTab Shortcuts === "
 "
-nnoremap <Tab> :WintabsNext<CR>
-nnoremap <S-Tab> :WintabsPrevious<CR>
+"nnoremap <Tab> :WintabsNext<CR>
+"nnoremap <S-Tab> :WintabsPrevious<CR>
 
+nnoremap <silent> <S-Tab> :WintabsPrevious<CR>
+nnoremap <silent> <Tab> :WintabsNext<CR>
+nnoremap <silent> <C-x> :WintabsClose<CR>
 
 " === NERDTree Shortcuts === "
 
-nnoremap <silent> <C-\> :NERDTreeToggle<Enter>
+nnoremap <silent> <C-T> :NERDTreeToggle<CR>
 nnoremap <silent> <C-t> :NERDTreeFind<CR>
 
 
@@ -391,6 +395,7 @@ hi CursorColumn cterm=none ctermbg=234  ctermfg=none gui=none guibg=#424242
 hi Title        cterm=none ctermbg=none ctermfg=4    gui=none               guifg=#88CCE7
 hi VertSplit    cterm=bold ctermbg=238  ctermfg=8    gui=bold guibg=#282828 guifg=#8F8F8F
 hi SignColumn   cterm=bold ctermbg=238  ctermfg=8    gui=bold guibg=#282828 guifg=#8F8F8F
+hi EndOfBuffer                          ctermfg=none                        guifg=#282828
 
 
 " ============================================================================ "
