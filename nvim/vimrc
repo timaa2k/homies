@@ -202,7 +202,6 @@ let NERDTreeQuitOnOpen = 1
 " ============================================================================ "
 
 let g:wintabs_display = 'statusline'
-let g:wintabs_statusline = '%!lightline#statusline(0)'
 let g:wintabs_autoclose = 1
 let g:wintabs_autoclose_vim = 1
 let g:wintabs_autoclose_vimtab = 1

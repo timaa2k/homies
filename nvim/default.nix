@@ -33,7 +33,8 @@ neovim.override {
   configure.customRC = builtins.readFile ./vimrc;
   configure.packages.myVimPackages = with vimPlugins; {
     start = [
-      lightline-vim
+      #lightline-vim
+      vim-airline
       vim-colorschemes
       vim-colortuner
       papercolor-theme
