@@ -25,6 +25,7 @@ let
       nodejs
       ripgrep
       fzf
+      fd
       bat
       ncurses
 
