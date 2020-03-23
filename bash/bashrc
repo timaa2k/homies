@@ -32,6 +32,8 @@ shopt -s histappend
 ## completion
 ##
 
+bind '"\t":menu-complete'
+
 # Copied over from the default Ubuntu config
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -136,12 +138,13 @@ fi
 export FZF_DEFAULT_COMMAND="fd --type file --color=always"
 export FZF_DEFAULT_OPTS="--inline-info --ansi"
 
+vf() {
+  fd --type file --max-depth 6 | fzf-tmux --ansi --multi --tac --preview-window right:70% --preview 'bat --color=always --theme=base16 {}'
+}
 
-fd() {
+wd() {
   local dir
-  dir=$(fd ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print --color=always 2> /dev/null | fzf +m) &&
-  cd "$dir"
+  dir=$(fd --type directory --max-depth 5 --color=always "$1" | fzf-down --ansi --multi --tac) && cd "$dir"
 }
 
 fif() {
@@ -150,9 +153,9 @@ fif() {
 }
 
 cdf() {
-   local file
-   local dir
-   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+  local file
+  local dir
+  file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
 }
 
 is_in_git_repo() {
