@@ -38,6 +38,7 @@ let
 
       coreutils
       curl
+      findutils
       gnupg
       htop
       jq
