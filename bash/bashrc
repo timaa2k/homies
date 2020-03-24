@@ -144,7 +144,7 @@ vf() {
 
 wd() {
   local dir
-  dir=$(fd --type directory --max-depth 5 --color=always "$1" | fzf-down --ansi --multi --tac) && cd "$dir"
+  dir=$(fd . "${1:-$HOME}" --type directory --max-depth 5 --color=always | fzf-down --ansi --multi --tac) && cd "$dir"
 }
 
 fif() {
