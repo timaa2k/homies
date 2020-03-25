@@ -60,8 +60,8 @@ fi
 ##
 
 alias ..="cd ..";
-alias ls="exa -F --group-directories-first"
-alias ll="exa -lFBgm --group-directories-first"
+alias ls="exa -F --group-directories-first --color=never"
+alias ll="exa -lFBgm --group-directories-first --color=never"
 alias la="ll -a";
 alias wd="j";
 alias :e="vim"
@@ -105,12 +105,11 @@ __prompt_command() {
 
     local RCol='\[\e[0m\]'
 
-    local Red='\[\e[0;31m\]'
+    local UBlu='\[\e[0;4;34m\]'
     local Gre='\[\e[0;32m\]'
-    local BYel='\[\e[1;33m\]'
-    local BBlu='\[\e[1;34m\]'
+    local Red='\[\e[0;31m\]'
 
-    PS1+="\u@\h ${BBlu}\w${RCol}${Gre}$(parse_git_branch)${RCol}\n"
+    PS1+="\u@\h ${UBlu}\w${RCol}${Gre}$(parse_git_branch)${RCol}\n"
 
     if [ $Exit != 0 ]; then
         PS1+="${Red}[${Exit}] "
@@ -135,7 +134,7 @@ if command -v fzf-share >/dev/null; then
 fi
 
 
-export FZF_DEFAULT_COMMAND="fd --type file --color=always"
+export FZF_DEFAULT_COMMAND="fd --type file"
 export FZF_DEFAULT_OPTS="--height 40% --inline-info --ansi"
 
 vf() {
@@ -144,7 +143,7 @@ vf() {
 
 wd() {
   local dir
-  dir=$(fd . "${1:-$HOME}" --type directory --max-depth 5 --color=always | fzf-down --ansi --multi --tac) && cd "$dir"
+  dir=$(fd . "${1:-$HOME}" --type directory --max-depth 5 | fzf-down --ansi --multi --tac) && cd "$dir"
 }
 
 fif() {
