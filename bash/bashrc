@@ -106,7 +106,7 @@ __prompt_command() {
     local RCol='\[\e[0m\]'
 
     local UBlu='\[\e[0;4;34m\]'
-    local Gre='\[\e[0;32m\]'
+    local Gre='\[\e[1;32m\]'
     local Red='\[\e[0;31m\]'
 
     PS1+="\u@\h ${UBlu}\w${RCol}${Gre}$(parse_git_branch)${RCol}\n"
