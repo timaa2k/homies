@@ -5,15 +5,6 @@
 , fetchFromGitHub
 }:
 let
-  vim-colortuner = vimUtils.buildVimPlugin {
-    name = "vim-colortuner";
-    src = fetchFromGitHub {
-      owner = "zefei";
-      repo = "vim-colortuner";
-      rev = "92a4e5ee035485fbde0f5921492083aa37faa2cc";
-      sha256 = "1njmr3dsh90h2db7fkplfxjdn3sflyw9xsayb019ki6w40p5qvxg";
-    };
-  };
   vim-wintabs = vimUtils.buildVimPlugin {
     name = "vim-wintabs";
     src = fetchFromGitHub {
@@ -46,8 +37,6 @@ neovim.override {
       vim-airline-themes
       vim-tmuxline
       vim-colorschemes
-      vim-colortuner
-      papercolor-theme
 
       # IDE
       echodoc
