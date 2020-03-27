@@ -108,14 +108,19 @@ __prompt_command() {
     local UBlu='\[\e[0;4;34m\]'
     local Gre='\[\e[0;32m\]'
     local Red='\[\e[0;31m\]'
+    local Blu='\[\e[0;34m\]'
 
     PS1+="\u@\h ${UBlu}\w${RCol}${Gre}$(parse_git_branch)${RCol}\n"
 
     if [ $Exit != 0 ]; then
-        PS1+="${Red}[${Exit}] "
+        PS1+="${Red}[${Exit}]${RCol} "
     fi
 
-    PS1+="${RCol}\$ "
+    if [[ -v IN_NIX_SHELL ]]; then
+        PS1+="${Blu}nix-shell>${RCol} "
+    else
+        PS1+="\$ "
+    fi
 
     history -a
 }
