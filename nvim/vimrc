@@ -376,13 +376,16 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " ===                              COLORSCHEME                             === "
 " ============================================================================ "
 "
+
+"let g:seoul256_srgb = 1
+"let g:seoul256_background = 253
+"let g:seoul256_light_background = 253
+"colors seoul256-light
+
 let g:airline_theme='base16'
-"let g:seoul256_srgb = 0
-""let g:seoul256_background = 253
-colorscheme seoul256-light
+colors cake16
 
-
-" hi Normal       cterm=none ctermbg=none ctermfg=15   gui=none guibg=#e1e1e1 guifg=#5c5c5c
+hi Normal       cterm=none ctermbg=253 ctermfg=15   gui=none guibg=#e1e1e1 guifg=#5c5c5c
 " hi LineNr       cterm=none ctermbg=none ctermfg=8    gui=none guibg=#3a3a3a guifg=#8F8F8F
 " hi StatusLine   cterm=none ctermbg=8    ctermfg=15   gui=none guibg=#5D5D5D guifg=#FBFBFB
 " hi StatusLineNC cterm=none ctermbg=15   ctermfg=8    gui=none guibg=#5D5D5D guifg=#FBFBFB
