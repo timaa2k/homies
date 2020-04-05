@@ -376,79 +376,250 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " ===                              COLORSCHEME                             === "
 " ============================================================================ "
 
-set t_Co=256
+" Author: Tim Weidner <timaa2k@gmail.com>
+" Maintainer: Tim Weidner <timaa2k@gmail.com>
+" License: MIT
+" Thanks to @ggalindezb for the template.
 
-hi EndOfBuffer                         guifg=#e1e1e1
+highlight clear
 
-hi Normal       gui=none guibg=#e1e1e1 guifg=#5c5c5c
-hi LineNr       gui=none guibg=#e1e1e1 guifg=#bcbcbc
-hi CursorLine   gui=none guibg=#d9d9d9
-hi CursorLineNR gui=none guibg=#d9d9d9 guifg=#5c5c5c
-hi CursorColumn gui=none guibg=#d9d9d9
+set background=light
 
-hi IncSearch    gui=none guibg=#F6DC69 guifg=#5c5c5c
-hi Search       gui=none guibg=#2EB5C1 guifg=#f0f0f0
-hi StatusLineNC gui=none               guifg=#2EB5C1
-hi VertSplit    gui=bold               guifg=#bcbcbc
-hi StatusLine   gui=none
+if exists("syntax_on")
+  syntax reset
+endif
 
-hi MatchParen   gui=none guibg=#5c5c5c guifg=#e1e1e1
+"let g:colors_name="timeless-grey"
 
-hi Visual       gui=none guibg=#cccccc
+" bg      = #e1e1e1
 
-hi DiffAdd      gui=none guifg=#35bd90
-hi DiffChange   gui=none guifg=#de935f
-hi DiffDelete   gui=none guifg=#cc6666
-hi DiffText     gui=none guifg=#5c5c5c
+" black   = #404040
+" red     = #a05454
+" green   = #4fa23b
+" yellow  = #7e9904
+" blue    = #5f819d
+" magenta = #71577a
+" cyan    = #55807b
+" white   = #bcbcbc
+"
+" black   = #8f8f8f
+" red     = #cc6666
+" green   = #b5bd90
+" yellow  = #d8af5f
+" blue    = #81a2be
+" magenta = #2eb5c1
+" cyan    = #8abeb7
+" white   = #cccccc
 
-hi Pmenu        gui=none guibg=#404040 guifg=#f0f0f0
-hi PmenuSel     gui=bold guibg=#D0D0D0 guifg=#404040
-hi PmenuSbar    gui=bold guibg=#f0f0f0 guifg=#5c5c5c
+"----------------------------------------------------------------
+" General settings                                              |
+"----------------------------------------------------------------
 
-" hi NonText      gui=bold guibg=none    guifg=#5c5c5c
-" hi Title        gui=none               guifg=#88CCE7
-" hi Directory    gui=none guibg=#242424 guifg=#88CCE7
-" hi SpecialKey   gui=none               guifg=#5c5c5c
+" --------------------------------
+" Editor settings
+" --------------------------------
+hi          Normal guifg=#5c5c5c guibg=#e1e1e1 gui=none
+hi          Cursor guifg=#e1e1e1 guibg=#5c5c5c gui=none
+hi      CursorLine guifg=none    guibg=#d9d9d9 gui=none
+hi          LineNr guifg=#bcbcbc guibg=#e1e1e1 gui=none
+hi    CursorLineNR guifg=#5c5c5c guibg=#d9d9d9 gui=none
+hi     EndOfBuffer guifg=#e1e1e1 guibg=none    gui=none
 
-" hi WildMenu     gui=none guibg=#88CCE7 guifg=#FBFBFB
-" hi QuickFixLine gui=none               guifg=#5c5c5c
+" -----------------
+" - Number column -
+" -----------------
+hi    CursorColumn guifg=none    guibg=#d9d9d9 gui=none
+hi      FoldColumn guifg=#2eb5c1 guibg=none    gui=none
+hi      SignColumn guifg=#2eb5c1 guibg=none    gui=none
+hi          Folded guifg=none    guibg=none    gui=none
 
-" hi SignColumn   gui=bold guibg=#bcbcbc guifg=#9e9e9e
-" hi ColumnMargin gui=none guibg=#e1e1e1 guifg=#bcbcbc
-" hi Error        gui=none               guifg=#f0f0f0
-" hi ErrorMsg     gui=none               guifg=#f0f0f0
-" hi Folded       gui=none guibg=#3B3B3B guifg=#90AB41
-" hi FoldColumn   gui=none guibg=#3B3B3B guifg=#90AB41
+" -------------------------
+" - Window/Tab delimiters - 
+" -------------------------
+hi       VertSplit guifg=#d9d9d9 guibg=none    gui=bold
+hi     ColorColumn guifg=none    guibg=#d9d9d9 gui=none
+hi         TabLine guifg=#2eb5c1 guibg=#d9d9d9 gui=none
+hi     TabLineFill guifg=#2eb5c1 guibg=#d9d9d9 gui=none
+hi      TabLineSel guifg=none    guibg=#d9d9d9 gui=none
 
-" hi SpellBad     gui=none               guifg=#f0f0f0
-" hi SpellCap     gui=none               guifg=#f0f0f0
-" hi SpellRare    gui=none               guifg=#f0f0f0
-" hi SpellLocal   gui=none               guifg=#f0f0f0
+" -------------------------------
+" - File Navigation / Searching -
+" -------------------------------
+hi       Directory guifg=none    guibg=none    gui=underline
+hi          Search guifg=#e1e1e1 guibg=#2eb5c1 gui=none
+hi       IncSearch guifg=#e1e1e1 guibg=#2eb5c1 gui=none
 
-" ============================================================================ "
-" ===                          SYNTAX HIGHLIGHTING                         === "
-" ============================================================================ "
+" -----------------
+" - Prompt/Status -
+" -----------------
+hi      StatusLine guifg=#2eb5c1 guibg=#bcbcbc gui=none
+hi    StatusLineNC guifg=#2eb5c1 guibg=none    gui=none
+hi        WildMenu guifg=#2eb5c1 guibg=none    gui=none
+hi        Question guifg=#b5bd90 guibg=none    gui=none
+hi           Title guifg=none    guibg=none    gui=none
+hi         ModeMsg guifg=none    guibg=none    gui=none
+hi         MoreMsg guifg=none    guibg=none    gui=none
 
-hi PreProc       gui=none      guifg=#b294bb
-hi Statement     gui=none      guifg=#8abeb7
-hi Keyword       gui=none      guifg=#5f819d
-hi Identifier    gui=none      guifg=#5f819d
-hi Structure     gui=none      guifg=#85678f
-hi Constant      gui=none      guifg=#d54e53
-hi Type          gui=none      guifg=#5f819d
-hi String        gui=none      guifg=#de935f
-hi Symbol        gui=none      guifg=#5e8d87
-hi Interpolation gui=none      guifg=#2EB5C1
-hi Comment       gui=bold      guifg=#8F8F8F
+" --------------
+" - Visual aid -
+" --------------
+hi      MatchParen guifg=#e1e1e1 guibg=#5c5c5c gui=none
+hi          Visual guifg=#5c5c5c guibg=#cccccc gui=none
+hi       VisualNOS guifg=#5c5c5c guibg=#cccccc gui=none
+hi         NonText guifg=#d9d9d9 guibg=none    gui=none
+hi            Todo guifg=#d8af5f guibg=none    gui=none
+hi      Underlined guifg=none    guibg=none    gui=underline
+hi           Error guifg=#e1e1e1 guibg=#cc6666 gui=none
+hi        ErrorMsg guifg=#e1e1e1 guibg=#cc6666 gui=none
+hi      WarningMsg guifg=#e1e1e1 guibg=#d8af5f gui=none
+hi          Ignore guifg=#e1e1e1 guibg=none    gui=none
+hi         Conceal guifg=#8abeb7 guibg=none    gui=none
+hi      SpecialKey guifg=#8abeb7 guibg=none    gui=none
 
-hi Delimiter     gui=none      guifg=#f0f0f0
-hi Ignore        gui=none      guifg=bg
+" --------------------------------
+" Variable types
+" --------------------------------
+hi        Constant guifg=#cc6666 guibg=none    gui=none
+hi          String guifg=#de935f guibg=none    gui=none
+hi StringDelimiter guifg=#2eb5c1 guibg=none    gui=none
+hi       Character guifg=none    guibg=none    gui=none
+hi          Number guifg=none    guibg=none    gui=none
+hi         Boolean guifg=#5f819d guibg=none    gui=none
+hi           Float guifg=#cc6666 guibg=none    gui=none
 
-hi Special       gui=none      guifg=#d7d7d7
-hi Number        gui=none      guifg=#5c5c5c
-hi Underlined    gui=underline guibg=#272727
-hi Method        gui=none      guifg=#f0f0f0
+hi      Identifier guifg=#5f819d guibg=none    gui=none
+hi        Function guifg=#8abeb7 guibg=none    gui=none
+
+" --------------------------------
+" Language constructs
+" --------------------------------
+hi         Comment guifg=#8f8f8f guibg=none    gui=none
+
+hi       Statement guifg=#8abeb7 guibg=none    gui=none
+hi     Conditional guifg=#5f819d guibg=none    gui=none
+hi          Repeat guifg=#5f819d guibg=none    gui=none
+hi           Label guifg=#5f819d guibg=none    gui=none
+hi        Operator guifg=#5f819d guibg=none    gui=none
+hi         Keyword guifg=#5f819d guibg=none    gui=none
+hi       Exception guifg=#cc6666 guibg=none    gui=none
+
+hi         Special guifg=#bcbcbc guibg=none    gui=none
+hi     SpecialChar guifg=#8abeb7 guibg=none    gui=none
+hi             Tag guifg=#8abeb7 guibg=none    gui=none
+hi       Delimiter guifg=#2eb5c1 guibg=none    gui=none
+hi  SpecialComment guifg=#8abeb7 guibg=none    gui=none
+hi           Debug guifg=#8abeb7 guibg=none    gui=none
+
+" ----------
+" - C like -
+" ----------
+hi         PreProc guifg=#2eb5c1 guibg=none    gui=none
+hi         Include guifg=#2eb5c1 guibg=none    gui=none
+hi          Define guifg=#2eb5c1 guibg=none    gui=none
+hi           Macro guifg=#2eb5c1 guibg=none    gui=none
+hi       PreCondit guifg=#2eb5c1 guibg=none    gui=none
+
+hi            Type guifg=#2eb5c1 guibg=none    gui=none
+hi    StorageClass guifg=#2eb5c1 guibg=none    gui=none
+hi       Structure guifg=#2eb5c1 guibg=none    gui=none
+hi         Typedef guifg=#2eb5c1 guibg=none    gui=none
+
+" --------------------------------
+" Diff
+" --------------------------------
+hi         DiffAdd guifg=#b5bd90 guibg=none gui=none
+hi      DiffChange guifg=#d8af5f guibg=none gui=none
+hi      DiffDelete guifg=#cc6666 guibg=none gui=none
+hi        DiffText guifg=#d8af5f guibg=none gui=none
+hi        DiffFile guifg=none    guibg=none    gui=underline
 
 
-let g:airline_theme='base16'
+" --------------------------------
+" Completion menu
+" --------------------------------
+hi           Pmenu guifg=#2eb5c1 guibg=#d9d9d9 gui=none
+hi        PmenuSel guifg=none    guibg=#d9d9d9 gui=none
+hi       PmenuSbar guifg=#2eb5c1 guibg=#d9d9d9 gui=none
+hi      PmenuThumb guifg=#2eb5c1 guibg=#d9d9d9 gui=none
 
+" --------------------------------
+" Spelling
+" --------------------------------
+hi        SpellBad guifg=#cc6666 guibg=none    gui=underline
+hi        SpellCap guifg=#d8af5f guibg=none    gui=underline
+hi      SpellLocal guifg=#d8af5f guibg=none    gui=underline
+hi       SpellRare guifg=#d8af5f guibg=none    gui=underline
+
+"--------------------------------------------------------------------
+" Specific settings                                                 |
+"--------------------------------------------------------------------
+
+hi  link diffAdded               DiffAdd
+hi  link diffRemoved             DiffDelete
+hi  link diffLine                DiffFile
+hi  link diffIndexLine           DiffFile
+hi  link diffSubName             DiffFile
+
+hi! link gitDateHeader           gitIdentityHeader
+hi! link gitIdentityHeader       gitIdentityKeyword
+hi! link gitIdentityKeyword      Label
+hi! link gitNotesHeader          gitKeyword
+hi! link gitReflogHeader         gitKeyword
+hi! link gitKeyword              Keyword
+hi! link gitIdentity             String
+hi! link gitEmailDelimiter       Delimiter
+hi! link gitEmail                Special
+hi! link gitDate                 Number
+hi! link gitMode                 Number
+hi! link gitHashAbbrev           gitHash
+hi! link gitHash                 Identifier
+hi! link gitReflogMiddle         gitReference
+hi! link gitReference            Function
+hi! link gitStage                gitType
+hi! link gitType                 Type
+hi! link gitDiffAdded            diffAdded
+hi! link gitDiffRemoved          diffRemoved
+hi! link gitcommitDiscardedFile  diffRemoved
+hi! link gitcommitSelectedFile   diffAdded
+hi! link gitcommitUnmergedFile   ErrorMsg
+hi! link gitcommitDiscardedArrow gitcommitDiscardedFile
+hi! link gitcommitSelectedArrow  gitcommitSelectedFile
+hi! link gitcommitUnmergedArrow  gitcommitUnmergedFile
+
+let g:terminal_color_background = "#e1e1e1"
+let g:terminal_color_foreground = "#5c5c5c"
+
+" dark0 + gray
+let g:terminal_color_0 = "#404040"
+let g:terminal_color_8 = "#8f8f8f"
+
+" neutral_red + bright_red
+let g:terminal_color_1 = "#a05454"
+let g:terminal_color_9 = "#cc6666"
+
+" neutral_green + bright_green
+let g:terminal_color_2 = "#4fa23b"
+let g:terminal_color_10 = "#b5bd90"
+
+" neutral_yellow + bright_yellow
+let g:terminal_color_3 = "#2eb5c1"
+let g:terminal_color_11 = "#d8af5f"
+
+" neutral_blue + bright_blue
+let g:terminal_color_4 = "#5f819d"
+let g:terminal_color_12 = "#81a2be"
+
+" neutral_purple + bright_purple
+let g:terminal_color_5 = "#71577a"
+let g:terminal_color_13 = "#2eb5c1"
+
+" neutral_aqua + faded_aqua
+let g:terminal_color_6 = "#55807b"
+let g:terminal_color_14 = "#8abeb7"
+
+" light4 + light1
+let g:terminal_color_7 = "#bcbcbc"
+let g:terminal_color_15 = "#cccccc"
+
+
+let g:airline_theme = 'base16'
