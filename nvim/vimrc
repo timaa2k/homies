@@ -114,6 +114,17 @@ let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#tmuxline#snapshot_file = "~/.tmux-colors"
 
 let g:tmuxline_powerline_separators = 0
+let g:tmuxline_status_justify = 'left'
+let g:tmuxline_preset = {
+    \'a'       : '',
+    \'b'       : '',
+    \'c'       : '',
+    \'win'     : '#W',
+    \'cwin'    : '#W',
+    \'x'       : '#S',
+    \'y'       : '%Y-%m-%d',
+    \'z'       : '',
+    \'options' : {'status-justify' : 'left'}}
 
 let g:airline#extensions#default#section_truncate_width = {
   \ 'b': 79,
@@ -420,7 +431,7 @@ endif
 " --------------------------------
 hi          Normal guifg=#5c5c5c guibg=#e1e1e1 gui=none
 hi          Cursor guifg=#e1e1e1 guibg=#5c5c5c gui=none
-hi      CursorLine guifg=none    guibg=#d9d9d9 gui=none
+hi      CursorLine               guibg=#d9d9d9 gui=none
 hi          LineNr guifg=#bcbcbc guibg=#e1e1e1 gui=none
 hi    CursorLineNR guifg=#5c5c5c guibg=#d9d9d9 gui=none
 hi     EndOfBuffer guifg=#e1e1e1 guibg=none    gui=none
