@@ -6,7 +6,7 @@ with
           builtins.replaceStrings
           ["SUBSTITUTE_GITIGNORE"] ["${./gitignore}"]
           (builtins.readFile ./config);
-        destination = "/.gitconfig";
+        destination = "/git/config";
       };
   };
 
@@ -16,6 +16,6 @@ symlinkJoin {
   paths = [ git ];
   postBuild = ''
     wrapProgram "$out/bin/git" \
-    --set HOME "${gitHome}"
+    --set XDG_CONFIG_HOME "${gitHome}"
   '';
 }
