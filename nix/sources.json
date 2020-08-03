@@ -12,15 +12,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
-        "branch": "release-20.03",
+        "branch": "nixpkgs-unstable",
         "description": "Nixpkgs/NixOS branches that track the Nixpkgs/NixOS channels",
         "homepage": null,
         "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "0b7fe7290acfd1b150949f195a93e58fb27c2c81",
-        "sha256": "1zklb1mqxcsm62kcs6jsri76kc32xa57c968qlhfjciid1f61ng2",
+        "repo": "nixpkgs-channels",
+        "rev": "7bf0f7301a3fdd8478e8abe81df96fbbff5fb9e7",
+        "sha256": "0hw8hdj0a6xs4fza9mfbwzmxaa5x4ynp57y52sy5x1cps674ck3j",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/0b7fe7290acfd1b150949f195a93e58fb27c2c81.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/7bf0f7301a3fdd8478e8abe81df96fbbff5fb9e7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

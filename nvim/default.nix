@@ -1,8 +1,9 @@
 { sources
-, neovim
+, fetchFromGitHub
 , vimPlugins
 , vimUtils
-, fetchFromGitHub
+, wrapNeovim
+, neovim-unwrapped
 }:
 let
   vim-wintabs = vimUtils.buildVimPlugin {
@@ -24,7 +25,9 @@ let
     };
   };
 in
-neovim.override {
+wrapNeovim.override {
+  # NOTE(tim): Put neovim-unwrapped arguments here.
+} neovim-unwrapped {
   vimAlias = true;
   viAlias = true;
   withPython = false;

@@ -12,10 +12,17 @@ let
       buildInputs = (oa.buildInputs or []) ++ self.stdenv.lib.optional self.stdenv.isDarwin self.darwin.Security;
   });
 
+  neovim-unwrapped = super.neovim-unwrapped.overrideAttrs (oldAttrs: {
+    version = "master";
+    src = builtins.fetchGit {
+      url = https://github.com/neovim/neovim.git;
+    };
+  });
+
   dot-bash = super.callPackage ./bash { sources = sources; };
   dot-git = super.callPackage ./git {};
   dot-lf = super.callPackage ./lf {};
-  dot-neovim = super.callPackage ./nvim {};
+  dot-neovim = super.callPackage ./nvim { neovim-unwrapped = neovim-unwrapped; };
   dot-tmux = super.callPackage ./tmux {};
 in
 {
