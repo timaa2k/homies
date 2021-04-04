@@ -17,6 +17,7 @@ let
     src = builtins.fetchGit {
       url = https://github.com/neovim/neovim.git;
     };
+    nativeBuildInputs = super.neovim-unwrapped.nativeBuildInputs ++ [ super.tree-sitter ];
   });
 
   dot-bash = super.callPackage ./bash { sources = sources; };

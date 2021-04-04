@@ -25,9 +25,7 @@ let
     };
   };
 in
-wrapNeovim.override {
-  # NOTE(tim): Put neovim-unwrapped arguments here.
-} neovim-unwrapped {
+wrapNeovim neovim-unwrapped {
   vimAlias = true;
   viAlias = true;
   withPython = false;
