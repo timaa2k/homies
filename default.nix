@@ -19,6 +19,7 @@ let
       (python3.withPackages (p: with p; [
         pynvim
       ]))
+      ps
       nodejs
       ripgrep
       fzf
