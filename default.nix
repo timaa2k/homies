@@ -31,6 +31,7 @@ let
       python
       go
       godef
+      gopls
       gotools
       tmuxp
 

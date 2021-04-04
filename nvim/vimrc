@@ -150,7 +150,7 @@ autocmd VimEnter * packadd vim-wintabs
 
 " Golang
 autocmd Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.go :silent !call CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 " Markdown
 au FileType markdown setlocal spell
@@ -162,6 +162,48 @@ autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 " ============================================================================ "
 " ===                        Coc-nvim PLUGIN CONFIG                        === "
 " ============================================================================ "
+"
+let g:coc_user_config = {
+    \ 'codeLens.enable': 'true',
+    \ 'coc.preferences.formatOnType': 'true',
+    \ 'coc.preferences.formatOnSaveFiletypes': [
+        \ 'go',
+        \ 'python',
+        \ 'markdown',
+        \ 'javascript',
+        \ 'typescript',
+        \ 'json',
+        \ 'jsonc'
+    \ ],
+    \ 'coc.preferences.messageLevel': 'error',
+    \ 'coc.preferences.extensionUpdateCheck': 'daily',
+    \ 'coc.source.around.firstMatch': 'false',
+    \ 'coc.source.file.ignoreHidden': 'false',
+    \ 'diagnostic.format': '%message [%source]',
+    \ 'diagnostic.virtualText': 'true',
+    \ 'diagnostic.checkCurrentLine': 'true',
+    \ 'diagnostic.separateRelatedInformationAsDiagnostics': 'true',
+    \ 'eslint.autoFixOnSave': 'true',
+    \ 'eslint.format.enable': 'true',
+    \ 'git.addGBlameToVirtualText': 'true',
+    \ 'git.semanticCommit.scope': 'false',
+    \ 'go.goplsOptions': {
+        \ 'linksInHover': 'false',
+        \ 'usePlaceholders': 'true',
+        \ 'staticcheck': 'true'
+    \ },
+    \ 'markdownlint.config': {
+        \ 'default': 'true',
+        \ 'line-length': 'false'
+    \ },
+    \ 'languageserver': {
+        \ 'go': {
+            \ 'command': 'gopls',
+            \ 'rootPatterns': ['go.mod'],
+            \ 'filetypes': ['go']
+        \ }
+    \ }
+\ }
 "
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
