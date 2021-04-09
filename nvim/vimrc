@@ -516,7 +516,7 @@ hi         MoreMsg guifg=none    guibg=none    gui=none
 " --------------
 " - Visual aid -
 " --------------
-hi      MatchParen guifg=#e1e1e1 guibg=#5c5c5c gui=none
+hi      MatchParen guifg=none    guibg=#bcbcbc gui=none
 hi          Visual guifg=#5c5c5c guibg=#cccccc gui=none
 hi       VisualNOS guifg=#5c5c5c guibg=#cccccc gui=none
 hi         NonText guifg=#d9d9d9 guibg=none    gui=none
