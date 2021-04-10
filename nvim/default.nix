@@ -15,15 +15,6 @@ let
       sha256 = "0n677r3snif7rq0z3l16ig9w9vb855ghf2p89n1l0z1s9y8619k0";
     };
   };
-  vim-tmuxline = vimUtils.buildVimPlugin {
-    name = "vim-tmuxline";
-    src = fetchFromGitHub {
-      owner = "edkolev";
-      repo = "tmuxline.vim";
-      rev = "7001ab359f2bc699b7000c297a0d9e9a897b70cf";
-      sha256 = "13d87zxpdzryal5dkircc0sm88mwwq7f5n4j3jn9f09fmg9siifb";
-    };
-  };
 in
 wrapNeovim neovim-unwrapped {
   vimAlias = true;
@@ -36,7 +27,6 @@ wrapNeovim neovim-unwrapped {
     start = [
       vim-airline
       vim-airline-themes
-      vim-tmuxline
       vim-colorschemes
 
       # IDE

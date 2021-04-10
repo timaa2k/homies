@@ -101,7 +101,6 @@ let g:airline#extensions#disable_rtp_load = v:true
 let g:airline_extensions = [
   \ 'branch',
   \ 'coc',
-  \ 'tmuxline',
 \ ]
 
 let g:airline#extensions#hunks#enabled = 0
@@ -112,19 +111,6 @@ let g:airline#extensions#branch#format = 1
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#tmuxline#snapshot_file = "~/.tmux-colors"
-
-let g:tmuxline_powerline_separators = 0
-let g:tmuxline_status_justify = 'left'
-let g:tmuxline_preset = {
-    \'a'       : '',
-    \'b'       : '',
-    \'c'       : '',
-    \'win'     : '#W',
-    \'cwin'    : '#W',
-    \'x'       : '#S',
-    \'y'       : '%Y-%m-%d',
-    \'z'       : '',
-    \'options' : {'status-justify' : 'left'}}
 
 let g:airline#extensions#default#section_truncate_width = {
   \ 'b': 79,
@@ -183,8 +169,6 @@ let g:coc_user_config = {
     \ 'diagnostic.virtualText': 'true',
     \ 'diagnostic.checkCurrentLine': 'true',
     \ 'diagnostic.separateRelatedInformationAsDiagnostics': 'true',
-    \ 'eslint.autoFixOnSave': 'true',
-    \ 'eslint.format.enable': 'true',
     \ 'git.addGBlameToVirtualText': 'true',
     \ 'git.semanticCommit.scope': 'false',
     \ 'go.goplsOptions': {
@@ -267,14 +251,6 @@ let NERDTreeAutoDeleteBuffer = 1
 
 " Preffify NERDTree.
 let NERDTreeMinimalUI = 1
-"let NERDTreeDirArrows = 1
-
-" Start NERDTree if vim is invoked without cmd line args.
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists(“s:std_in”) | NERDTree | endif
-"
-" Automatically close tab if the only remaining one is NERDTree.
-"autocmd bufenter * if (winnr(“$”) == 1 && exists(“b:NERDTreeType”) && b:NERDTreeType == “primary”) | q | endif
 "
 " Automatically close NERDTree after opening a file.
 let NERDTreeQuitOnOpen = 1
@@ -301,28 +277,17 @@ let g:wintabs_ui_active_higroup = 'Search'
 " ===                             KEY MAPPINGS                             === "
 " ============================================================================ "
 
+
 " === General Shorcuts === "
 
 " Change leader key from "\" to ","
 let mapleader=","
 
-" Improved navigation
-"nnoremap <silent> <C-h> :TmuxNavigateLeft<CR>
-"nnoremap <silent> <C-j> :TmuxNavigateDown<CR>
-"nnoremap <silent> <C-k> :TmuxNavigateUp<CR>
-"nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
-
-"tnoremap <C-w>h <C-\><C-n><C-w>h
-"tnoremap <C-w>j <C-\><C-n><C-w>j
-"tnoremap <C-w>k <C-\><C-n><C-w>k
-"tnoremap <C-w>l <C-\><C-n><C-w>l
-
 
 " === Fzf Shortcuts === "
 
-nnoremap <silent> <C-f> :Files<CR>
-nnoremap <silent> <C-b> :Buffers<CR>
-nnoremap <silent> <C-v> :Git<CR>
+command! Open Files
+
 
 " === WinTab Shortcuts === "
 
@@ -330,11 +295,7 @@ nnoremap <silent> <S-Tab> :WintabsPrevious<CR>
 nnoremap <silent> <Tab> :WintabsNext<CR>
 nnoremap <silent> <C-x> :WintabsClose<CR>
 nnoremap <silent> <C-z> :WintabsUndo<CR>
-command! Tclose WintabsClose
-command! Tnext WintabsNext
-command! Tprev WintabsPrevious
-command! Tmax WintabsMaximize
-command! Tundo WintabsUndo
+
 
 " === NERDTree Shortcuts === "
 
@@ -487,9 +448,11 @@ hi      SignColumn guifg=#2eb5c1 guibg=none    gui=none
 hi          Folded guifg=none    guibg=none    gui=none
 
 " -------------------------
-" - Window/Tab delimiters - 
+" - Window/Tab delimiters -
 " -------------------------
-hi       VertSplit guifg=#d9d9d9 guibg=none    gui=bold
+hi       VertSplit guifg=#d9d9d9 guibg=none    gui=none
+hi    StatusLineNC guifg=#d9d9d9 guibg=none    gui=underline
+hi       IncSearch guifg=#e1e1e1 guibg=#2eb5c1 gui=none
 hi     ColorColumn guifg=none    guibg=#d9d9d9 gui=none
 hi         TabLine guifg=#2eb5c1 guibg=#d9d9d9 gui=none
 hi     TabLineFill guifg=#2eb5c1 guibg=#d9d9d9 gui=none
@@ -498,15 +461,13 @@ hi      TabLineSel guifg=none    guibg=#d9d9d9 gui=none
 " -------------------------------
 " - File Navigation / Searching -
 " -------------------------------
-hi       Directory guifg=none    guibg=none    gui=underline
+hi       Directory guifg=none    guibg=none    gui=none
 hi          Search guifg=#e1e1e1 guibg=#2eb5c1 gui=none
-hi       IncSearch guifg=#e1e1e1 guibg=#2eb5c1 gui=none
 
 " -----------------
 " - Prompt/Status -
 " -----------------
 hi      StatusLine guifg=#2eb5c1 guibg=#bcbcbc gui=none
-hi    StatusLineNC guifg=#2eb5c1 guibg=none    gui=none
 hi        WildMenu guifg=#2eb5c1 guibg=none    gui=none
 hi        Question guifg=#b5bd90 guibg=none    gui=none
 hi           Title guifg=none    guibg=none    gui=none
@@ -517,8 +478,8 @@ hi         MoreMsg guifg=none    guibg=none    gui=none
 " - Visual aid -
 " --------------
 hi      MatchParen guifg=none    guibg=#bcbcbc gui=none
-hi          Visual guifg=#5c5c5c guibg=#cccccc gui=none
-hi       VisualNOS guifg=#5c5c5c guibg=#cccccc gui=none
+hi          Visual guifg=none    guibg=#cccccc gui=none
+hi       VisualNOS guifg=none    guibg=#cccccc gui=none
 hi         NonText guifg=#d9d9d9 guibg=none    gui=none
 hi            Todo guifg=#d8af5f guibg=none    gui=none
 hi      Underlined guifg=none    guibg=none    gui=underline
