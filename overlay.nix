@@ -3,15 +3,6 @@ self: super:
 let
   sources = import ./nix/sources.nix;
 
-  niv = self.haskell.lib.justStaticExecutables (import sources.niv {}).niv;
-
-  # This is used by ycmd -> youcompleteme -> neovim and the fix wasn't
-  # backported to 19.09
-  rustracerd = super.rustracerd.overrideAttrs (oa: {
-      nativeBuildInputs = (oa.nativeBuildInputs or []) ++ [ self.makeWrapper ];
-      buildInputs = (oa.buildInputs or []) ++ self.stdenv.lib.optional self.stdenv.isDarwin self.darwin.Security;
-  });
-
   neovim-unwrapped = super.neovim-unwrapped.overrideAttrs (oldAttrs: {
     version = "master";
     src = builtins.fetchGit {
@@ -28,8 +19,6 @@ let
 in
 {
   sources = sources;
-  niv = niv;
-  rustracerd = rustracerd;
   dot-bash = dot-bash;
   dot-git = dot-git;
   dot-lf = dot-lf;
