@@ -23,6 +23,7 @@ let
     neovim-configured
     niv
     nix
+    nix-prefetch-scripts
     nodejs
     ps
     python3
@@ -31,8 +32,10 @@ let
     tree
     tmux-configured
     tmuxp
+    unzip
     utillinux
     xclip
+    youtube-dl
     yq
   ];
 
