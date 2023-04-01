@@ -1,16 +1,7 @@
 let
-  sources = import ./nix/sources.nix;
-  pkgs = import sources.nixpkgs {
+  pkgs = import (import ./nix/sources.nix).nixpkgs {
     config = {};
-    overlays = [
-      (self: super: {
-        sources = sources;
-        bash-configured = super.callPackage ./bash { nixpkgs = sources.nixpkgs; };
-        git-configured = super.callPackage ./git {};
-        neovim-configured = super.callPackage ./neovim {};
-        tmux-configured = super.callPackage ./tmux {};
-      })
-    ];
+    overlays = [ (import ./overlay.nix) ];
   };
   homies = with pkgs; [
     bash-completion
