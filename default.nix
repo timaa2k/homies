@@ -1,54 +1,49 @@
 let
   sources = import ./nix/sources.nix;
-  overlay = import ./overlay.nix;
-
   pkgs = import sources.nixpkgs {
-    overlays = [ overlay ];
     config = {};
-  };
-
-  homies = with pkgs;
-    [
-      dot-bash
-      bash-completion
-      exa
-      dot-git
-      dot-lf
-      dot-tmux
-      dot-neovim
-      (python3.withPackages (p: with p; [
-        pynvim
-      ]))
-      ps
-      nodejs
-      ripgrep
-      fzf
-      fd
-      bat
-      ncurses
-
-      niv
-      python
-      go
-      godef
-      gopls
-      gotools
-      tmuxp
-
-      coreutils
-      curl
-      findutils
-      gnupg
-      htop
-      jq
-      less
-      moreutils
-      nix
-      pass
-      tree
-      utillinux
-      xclip
+    overlays = [
+      (self: super: {
+        sources = sources;
+        bash-configured = super.callPackage ./bash { nixpkgs = sources.nixpkgs; };
+        git-configured = super.callPackage ./git {};
+        neovim-configured = super.callPackage ./neovim {};
+        tmux-configured = super.callPackage ./tmux {};
+      })
     ];
+  };
+  homies = with pkgs; [
+    bash-completion
+    bash-configured
+    coreutils
+    curl
+    exa
+    findutils
+    fzf
+    git-configured
+    gnupg
+    go
+    gopls
+    gotools
+    htop
+    jq
+    less
+    ncurses
+    neovim-configured
+    niv
+    nix
+    nodejs
+    ps
+    python3
+    python3Packages.pynvim
+    ripgrep
+    tree
+    tmux-configured
+    tmuxp
+    utillinux
+    xclip
+    yq
+  ];
 
 in
   if pkgs.lib.inNixShell

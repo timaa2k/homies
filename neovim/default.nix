@@ -19,9 +19,7 @@ in
 wrapNeovim neovim-unwrapped {
   vimAlias = true;
   viAlias = true;
-  withPython = false;
-  withPython3 = true;
-  withRuby = false;
+  withNodeJs = true;
   configure.customRC = builtins.readFile ./vimrc;
   configure.packages.myVimPackages = with vimPlugins; {
     start = [

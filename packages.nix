@@ -1,0 +1,27 @@
+bash-completion
+exa
+ps
+nodejs
+ripgrep
+fzf
+ncurses
+niv
+go
+gopls
+gotools
+tmuxp
+coreutils
+curl
+findutils
+gnupg
+htop
+jq
+less
+nix
+tree
+utillinux
+xclip
+yq
+(python3.withPackages (p: with p; [
+  pynvim
+]))
